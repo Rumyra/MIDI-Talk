@@ -17,7 +17,7 @@
 
   <!--CHANGE THIS TO USE NPM-->
   <link rel="stylesheet" href="reveal/css/reveal.css">
-  <link rel="stylesheet" href="reveal/css/theme/black.css" id="theme">
+  <link rel="stylesheet" href="reveal/css/theme/sky.css" id="theme">
   <link rel="stylesheet" href="reveal/lib/css/zenburn.css" id="theme">
   <script src="reveal/js/reveal.js"></script>
 
@@ -31,123 +31,136 @@
       <section>
         <section>
           <h1>Let's Talk About MIDI</h1>
+          <h2>Ruth John</h2>
         </section>
         <section>
           <h2>Hello, my name is Ruth</h2>
           <h3 class="fragment fade-in">@rumyra</h3>
-          <h3 class="fragment fade-in">I've given up on job titles</h3>
           <aside class="notes">
-            <p>Hi everyone, my names Ruth - you can find me on the interwebs as rumyra.</p>
-            <p>I've given up on job titles - I've had a lot of them and right at this minute I am...</p>
-            <p>This is a url - this will be important, so you might want to visit it, I'll keep it on the screen so you can see it. If you have newest chrome on latest ios or marshmallow I also have it on my physical web token, so it should just be alerted in your phone settings - if you have no idea what I'm talking about - come and talk to me later and I'll explain :)</p>
+            <p>Hi my names Ruth - I’m from the UK. I’m from a web development background, I currently work in research and development. You can find me on the internets as @rumyra</p>
           </aside>
         </section>
-        <!--<section>
-          <h2>Different - gif here</h2>
-          <aside class="notes">
-            <p>So today I want to talk to you about something completely different -  something that you may or may not know anything about, regardless I hope it's something that you will leave this talk knowing a lot more about and full of inspiration to use.</p>
-          </aside>
-        </section>-->
         <section>
-          <h1>MIDI</h1>
+          <h1>Let's Talk About MIDI</h1>
           <aside class="notes">
-            <p>Now I know what you're all thinking...</p>
+            <p>I came here today to talk to you about MIDI. It seems a strange topic, but one of the reasons I wanted to come and talk about it is to address a common misconception about MIDI, not just within the realms as what we do as developers but also in the wider world.</p>
           </aside>
         </section>
         <section data-background-video="public/media/cameronsworld.mp4">
-          <p>cameronsworld.net</p>
-          <h2 class="fragment fade-in">THIS IS NOT MIDI</h2>
+          <p style="color:white;">cameronsworld.net</p>
+          <h2 style="color:white;" class="fragment fade-in">THIS IS NOT MIDI</h2>
           <aside class="notes">
-            <p>OK OK rule number one....</p>
-            <p>This is not MIDI. But you all knew that right? MIDI is not digital audio - so those sounds you hear, they can't be MIDI!</p>
-          </aside>
-        </section>
-        <section>
-          <h2>It's OK</h2>
-          <aside class="notes">
-            <p>It's ok if you did think this was MIDI - back in the 80s when MIDI came about computer generated audio sounded like this and because they are intrinsically linked, you can be forgiven for the permanent association</p>
-            <p>It's a common misconception and to understand that conception we have to understand MIDI - so here goes</p>
+            <p>That “music” you hear, that’s not "MIDI". You can be forgiven for thinking it is and it was probably made with a piece of software that was MIDI enabled. But it’s not, the sounds you hear are digital audio.</p>
+            <p>This is a real life - actually recent - website btw - you can find it on cameronsworld.net</p>
           </aside>
         </section>
         <section>
           <h2>Music Instrument Digital Interface</h2>
           <aside class="notes">
-            <p>So yeh...</p>
+            <p>Let me elaborate. MIDI is intrinsically linked to music. MIDI itself stands for Music Instrument Digital Interface.</p>
           </aside>
         </section>
         <section>
           <h2>Music Instrument <span class="faded">Digital Interface</span></h2>
           <aside class="notes">
-            <p>Musical instrument bit - that bit gets everyone...</p>
+            <p> See that Music Instrument. So you can absolutely be forgiven for thinking its the sounds...</p>
           </aside>
         </section>
         <section>
           <h2><span class="faded">Music Instrument</span> Digital Interface</h2>
           <aside class="notes">
-            <p>It's this bit - Digital Interface - this is the really interesting bit.</p>
+            <p>But the key, the bit that’s really MIDI and really interesting is this bit “Digital Interface”. MIDI is a digital interface, at it’s basic it’s a data protocol for MIDI enabled hardware & software to be compatible with other MIDI enabled hardware & software.</p>
           </aside>
         </section>
-        <section>
-          <h2>MIDI Specification</h2>
-          <p class="fragment fade-in">Define data protocol</p>
-          <p class="fragment fade-in">Industry experts in 1983</p>
-          <p class="fragment fade-in">MIDI Manufacturers Association</p>
-          <aside class="notes">
-            <p>So it's a technical specification - just like anything else. Made to define a data protocol so digital instruments & equipment could be compatible and talk to each other. Industry experts got together in 1982 and put it together in 1983.</p>
-            <p>Think of the MMA like the W3C - it's a bunch of industry experts, with an invested interest in making a spec that suits everyones needs. Right. Simples.</p>
-            <p>It all came about because of the rise of digital instruments - synthesizers, sequencers, digital keyboards etc...</p>
-          </aside>
-        </section>
-        <section>
-          <h2>There's lots to it</h2>
-          <p class="fragment fade-in">General MIDI Spec</p>
-          <p class="fragment fade-in">MIDI file format</p>
-          <p class="fragment fade-in">Connector specification (DIN)</p>
-          <p class="fragment fade-in">Plenty of extensions to the original spec which surpass music</p>
-          <aside class="notes">
-            <p>Before I get into specs I want to look at instruments/controllers.</p>
-          </aside>
-        </section>
-        <section data-background="public/media/midiConts.jpg">
-          <aside class="notes">
-            <p>These are just some examples of MIDI instruments.</p>
-            <p>Top: Keyboard, synth, drum kit - also drum machines. You can also get things like guitar pedals, clarinet/sax type thing.</p>
-            <p><b>One thing to bear in mind</b> MIDI used to be expensive - the digitals intruments & controllers themselves ran into the hundreds if not thousands of pounds and DIN connectors were the data connectors of choice. This dictated in the computer world - expensive sound cards.</p>
-            <p>Bottom: Examples of basic controller. Launchpad (one first USB) - next two similar price AKAI LPD8 & Korg NanoPad2. Last icon iDJ</p>
-            <p>You can see why there's the MMA, making sure all the different manufacturers stay in line with the protocol</p>            
-            <p>Why is any of this relevant to you? Well we have access to this, in the lovely form of a web MIDI api</p>
-          </aside>
-        </section>
-        <section>
-          <h2>General MIDI 1 & 2 (GM1/GM2)</h2>
-          <p class="fragment fade-in">The most common spec</p>
-          <p class="fragment fade-in">GM1 = original | GM2 = 1999</p>
-          <p class="fragment fade-in">General MIDI Lite</p>
-          <aside class="notes">
-            <p>So let's look at General MIDI - the main spec, the one that you've seen and most likely to come across.</p>
-            <p>One was the first version and was expanded to 2 in 1999 a bit like the jump from HTML4 -> 5 just gave you more shiny.</p>
-          </aside>
-        </section>
-        <section>
-          <h2>Core of General MIDI: Messages</h2>
 
-          <p class="fragment fade-in">Channel Messages & System Messages</p>
+        <section>
+          <h2>Original MIDI Specs (1983)</h2>
+          <table>
+            <tr><td><img class="plain" src="public/media/GMIDI.png" /></td>
+              <td class="faded"><img class="plain" src="public/media/MIDIicon.png" /></td>
+            <td class="faded"><img class="plain" src="public/media/din.png" /></td></tr>
+          </table>
+          <p><a href="https://www.midi.org/">midi.org</a></p>
+          <aside class="notes">
+            <p>The first MIDI specs - because it is a bunch of technical specifications, came about in 1983, after a bunch of industry experts, we’re talking music hardware manufacturers, other renowned industry experts, got together after the rise of analogue and digital instruments in the 70’s - we’re talking synthesisers and such - and decided it would be good to have a common standard for all these instruments to talk to each other. And be bought into recording studios etc and be able to be plugged into recording equipment and be able to be recorded etc…</p>
+            <p>Especially with the digital equipment you can understand the frustrations with this not being possible. So the first MIDI specs involved A General MIDI Spec - which now has a lot more elements, more about this is a sec</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Original MIDI Specs (1983)</h2>
+          <table>
+            <tr><td class="faded"><img class="plain" src="public/media/GMIDI.png" /></td>
+              <td><img class="plain" src="public/media/MIDIicon.png" /></td>
+            <td class="faded"><img class="plain" src="public/media/din.png" /></td></tr>
+          </table>
+          <p><a href="https://www.midi.org/">midi.org</a></p>
+          <aside class="notes">
+            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Original MIDI Specs (1983)</h2>
+          <table>
+            <tr><td class="faded"><img class="plain" src="public/media/GMIDI.png" /></td>
+              <td class="faded"><img class="plain" src="public/media/MIDIicon.png" /></td>
+            <td><img class="plain" src="public/media/din.png" /></td></tr>
+          </table>
+          <p><a href="https://www.midi.org/">midi.org</a></p>
+          <aside class="notes">
+            <p>And a connector specification. The DIN connector. Which at the time was important, but now is very much being superseeded by USB, serial, and we’ll see later wireless is coming in with Bluetooth.</p>
+            <p>I’m not going to go into every single spec, we simply don’t have enough time and also there’s parts that are more relevant to us as developers which you will see. If you want to find out more all the spec docs are on www.midi.org.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Original MIDI Specs (1983)</h2>
+          <table>
+            <tr><td><img class="plain" src="public/media/GMIDI.png" /></td>
+              <td class="faded"><img class="plain" src="public/media/MIDIicon.png" /></td>
+            <td class="faded"><img class="plain" src="public/media/din.png" /></td></tr>
+          </table>
+          <p><a href="https://www.midi.org/">midi.org</a></p>
+          <aside class="notes">
+            <p>So I’m going to start with General MIDI - 1 was updated to 2 in the 90s. It’s basically just the jump from html4 to html5 - there was better hardware, better software, they added more to the spec. There is also a GM Light spec for ‘low powered mobile devices’ (pic of old handset) I’m pretty sure the phones in your hands can run GM2 we’re good :)</p>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Core of MIDI: Messages</h2>
+
+          <p class="fragment fade-in">General MIDI = Channel Messages & System Messages</p>
 
           <p class="fragment fade-in">Channel messages transmitted on individual channels - depict note on/off, pressure, program change etc...</p>
-
-          <p class="fragment fade-in">System messages are system wide - timing signals, start, continue & stop, system reset etc...</p>
           <aside class="notes">
-            <p>And with that in mind - because that all makes so much sense...</p>
-            <p>Let's put it into context - we're going to focus on channel message</p>
+            <p>The spec comes can be grouped into two distinct parts. Channels and system level and because it’s a data protocol it’s just specs for messages - data messages.</p>
+            <p>The channels part of the general MIDI spec describes what you’ve just seen - it’s about note on, note off, velocity (how hard you press), and which frequency is playing, which note, C, D, E etc…</p>
           </aside>
         </section>
 
         <section>
-          <h2>Keyboard Demo</h2>
+          <h2>You will need</h2>
+          <ol>
+            <li>A device</li>
+            <li>A modern browser</li>
+            <li><a href="http://thisurl.com">http://thisurl.com</a></li>
+          </ol>
           <aside class="notes">
-            <p></p>
+            <p>The easiest way for me to explain this to you is for me to illustrate this to you. Let’s take probably one of the most common MIDI enabled instruments - a keyboard.</p>
           </aside>
         </section>
+
+        <section>
+          <h2>Demo</h2>
+          <p>Hex data</p>
+          <aside class="notes">
+            <p>Now hex data - however cool it is, it’s not very readable and not the best to code with. The Web MIDI API very lovingly turns it into decimal values for us.</p>
+            <p>So let’s take a look at the API because this is really what we as divs are interested in.</p>
+          </aside>
+        </section>
+
+
 
 
         <section>
@@ -234,6 +247,31 @@ the second is 'note on velocity' and this has a value of 100, (I'm guessing this
           </aside>
         </section>
 
+        <section data-background="public/media/midiConts.jpg">
+          <aside class="notes">
+            <p>These are just some examples of MIDI instruments.</p>
+            <p>Top: Keyboard, synth, drum kit - also drum machines. You can also get things like guitar pedals, clarinet/sax type thing.</p>
+            <p><b>One thing to bear in mind</b> MIDI used to be expensive - the digitals intruments & controllers themselves ran into the hundreds if not thousands of pounds and DIN connectors were the data connectors of choice. This dictated in the computer world - expensive sound cards.</p>
+            <p>Bottom: Examples of basic controller. Launchpad (one first USB) - next two similar price AKAI LPD8 & Korg NanoPad2. Last icon iDJ</p>
+            <p>You can see why there's the MMA, making sure all the different manufacturers stay in line with the protocol</p>            
+            <p>Why is any of this relevant to you? Well we have access to this, in the lovely form of a web MIDI api</p>
+          </aside>
+        </section>
+        <section>
+          <h2>Core of MIDI: Messages</h2>
+
+          <p class="fragment fade-in">General MIDI = Channel Messages & System Messages</p>
+
+          <p class="fragment fade-in">Channel messages transmitted on individual channels - depict note on/off, pressure, program change etc...</p>
+
+          <p class="fragment fade-in">System messages are system wide - timing signals, start, continue & stop, system reset etc...</p>
+          <aside class="notes">
+            <p>The spec comes can be grouped into two distinct parts. Channels and system level and because it’s a data protocol it’s just specs for messages - data messages.
+
+The channels part of the general MIDI spec describes what you’ve just seen - it’s about note on, note off, velocity (how hard you press), and which frequency is playing, which note, C, D, E etc…</p>
+          </aside>
+        </section>
+
       </section>
     </div></div>
 
@@ -252,7 +290,7 @@ Reveal.initialize({
   controls: true,
 
   // Display a presentation progress bar
-  progress: true,
+  progress: false,
 
   // Display the page number of the current slide
   slideNumber: true,
@@ -273,7 +311,7 @@ Reveal.initialize({
   backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
 
   // Number of slides away from the current that are visible
-  viewDistance: 3,
+  viewDistance: 2,
 
   // Parallax background image
   parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
