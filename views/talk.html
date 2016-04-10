@@ -83,7 +83,7 @@
           <p><a href="https://www.midi.org/">midi.org</a></p>
           <aside class="notes">
             <p>The first MIDI specs - because it is a bunch of technical specifications, came about in 1983, after a bunch of industry experts, we’re talking music hardware manufacturers, other renowned industry experts, got together after the rise of analogue and digital instruments in the 70’s - we’re talking synthesisers and such - and decided it would be good to have a common standard for all these instruments to talk to each other. And be bought into recording studios etc and be able to be plugged into recording equipment and be able to be recorded etc…</p>
-            <p>Especially with the digital equipment you can understand the frustrations with this not being possible. So the first MIDI specs involved A General MIDI Spec - which now has a lot more elements, more about this is a sec</p>
+            <p>Especially with the digital equipment you can understand the frustrations with this not being possible. So they formed the MMA - MIDI Manufacturers Association - the first MIDI specs involved A General MIDI Spec - which now has a lot more elements, more about this is a sec</p>
           </aside>
         </section>
 
@@ -130,11 +130,12 @@
         <section>
           <h2>Core of MIDI: Messages</h2>
 
-          <p class="fragment fade-in">General MIDI = Channel Messages & System Messages</p>
+          <p class="fragment fade-in">General MIDI: Channel Messages & System Messages</p>
 
-          <p class="fragment fade-in">Channel messages transmitted on individual channels - depict note on/off, pressure, program change etc...</p>
+          <p class="fragment fade-in">Channel messages: Voice messages & Mode messages</p>
           <aside class="notes">
             <p>The spec comes can be grouped into two distinct parts. Channels and system level and because it’s a data protocol it’s just specs for messages - data messages.</p>
+            <p>There are two types of channel messages - voice and mode. Voice messages are sent over voice channels and mode messages are sent over an instruments basic channel.</p>
             <p>The channels part of the general MIDI spec describes what you’ve just seen - it’s about note on, note off, velocity (how hard you press), and which frequency is playing, which note, C, D, E etc…</p>
           </aside>
         </section>
@@ -144,7 +145,7 @@
           <ol>
             <li>A device</li>
             <li>A modern browser</li>
-            <li><a href="http://thisurl.com">http://thisurl.com</a></li>
+            <li><h3><a href="http://thisurl.com">http://thisurl.com</a></h3></li>
           </ol>
           <aside class="notes">
             <p>The easiest way for me to explain this to you is for me to illustrate this to you. Let’s take probably one of the most common MIDI enabled instruments - a keyboard.</p>
@@ -155,13 +156,9 @@
           <h2>Demo</h2>
           <p>Hex data</p>
           <aside class="notes">
-            <p>Now hex data - however cool it is, it’s not very readable and not the best to code with. The Web MIDI API very lovingly turns it into decimal values for us.</p>
-            <p>So let’s take a look at the API because this is really what we as divs are interested in.</p>
+            <p>Now this is the data that the web MIDI api passes back to us when a MIDI device is plugged in. So let's take a look at the code.</p>
           </aside>
         </section>
-
-
-
 
         <section>
           <h2>Web MIDI API</h2>
@@ -175,17 +172,9 @@ function onMIDISuccess(midiControl) {
 }
           </code></pre>
           <aside class="notes">
-            <p>So we can get this data - in a browser... we plug in a keyboard let's say</p>
-            <p>This code logs data from inputs - pads, dials, sliders</p>
-            <p>Notation, pitch, velocity</p>
-            <p>GO BACK TO URL</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>MIDI Demo</h2>
-          <aside class="notes">
-            <p></p>
+            <p>You make sure it’s avail, listen for attached device, when plugged in you can receive these afore mentioned messages. All I’m doing here is logging those messages - you can do whatever you want with them. Notice the sysex false - this is related to system messages and I will get back to that in a moment.</p>
+            <p>Now there’s a window of opportunity - there’s plenty of stuff we can start coding with that!</p>
+            <p>But what are these values?</p>
           </aside>
         </section>
 
@@ -195,55 +184,129 @@ function onMIDISuccess(midiControl) {
           <h2 class="fragment fade-in">[128, 60, 64]</h2>
           <p class="fragment fade-in">[Message type (Note off), Note, Velocity/pressure]</p>
           <aside class="notes">
-            <p>the first byte 144 is the message type and channel, 144 is 90 in hex and the 9 says it's a 'Note on' message and the 0 is the channel number.  
-A 'Note on' message has two data bytes, the first is the 'key number' which I'm guessing is the note number, so 60 would be C
-the second is 'note on velocity' and this has a value of 100, (I'm guessing this means the rate at which the note is turned on)</p>
+            <p>the first byte 144 is the message type and channel, 144 is 90 in hex and the 9 says it's a 'Note on' message and the 0 is the channel number. A 'Note on' message has two data bytes, the first is the 'key number' which I'm guessing is the note number, so 60 would be C the second is 'note on velocity' and this has a value of 100, (I'm guessing this means the rate at which the note is turned on)</p>
+
+          </aside>
+        </section>
+
+        <section>
+          <h2>What about sound?</h2>
+          <p class="fragment fade-in">Mode messages: modulation, volume, panning, sustain, all sounds off, all notes, off, reset controllers.</p>
+          <p class="fragment fade-in">Voice Bank</p>
+          <aside class="notes">
+            <p>We've already seen which note, but channel mode messages carry information about modulation, volume, panning, sustain - as well as things like all sounds off, all notes off, reset controllers etc...</p>
+            <p>It also includes voice bank selection - the spec defines a whole range on instruments in it's voice bank</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Back to our keyboard</h2>
+          <p class="fragment fade-in">000 Grand Piano</p>
+          <aside class="notes">
+            <p>So back to our keyboard, there's a whole range of voices - or sounds, for instance 000 is Grand Piano.</p>
+            <p>But it's up to the manufacturer of the instrument to decide how it sounds. The voice bank sounds are mostly instrumental covering percussion, strings, wind instruments etc... there are a few special ones like 389 seashore, 390 bird and 391 telephone...</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Web Audio API</h2>
+          <p class="fragment fade-in">The classic companion to the Web MIDI API</p>
+          <p class="fragment fade-in">MIDI data -> Play sounds</p>
+          <aside class="notes">
+            <p>So the web audio API - the classic companion to the Web MIDI API. You have an instrument or controller and you set up the Web Audio API to play sounds when certain data is received.</p>
+            <p>I'm sure we've all seen the web audio API - here I'm using a sample</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Loading & playing sounds</h2>
+          <pre><code data-trim>Audio code here
+          </code></pre>
+          <aside class="notes">
+            <p>Here I'm pre loading all the piano samples and holding them in the buffer array, ready to be played when I receive the matched MIDI data</p>
+            <p>We could of course generate sounds with the ocillator node, we could add filters when dials are turned on MIDI controllers.</p>
+            <p>There's a whole range of audio/MIDI stuff - the best examples are 
+          </aside>
+        </section>
+
+        <section>
+          <h2>Audio/MIDI Examples</h2>
+          <p><a href="http://codepen.io/davemackintosh/pen/XmrqLV?editors=0010">codepen.io/davemackintosh/pen/XmrqLV -> Oscillated MIDI triggered sounds - Dave Mackintosh</a></p>
+          <p class="fragment fade-in"><a href="http://webaudiodemos.appspot.com/">webaudiodemos.appspot.com -> Cool demos</a></p>
+          <p class="fragment fade-in"><a href="https://webaudiodemos.appspot.com/slides/webmidi.html#/">webaudiodemos.appspot.com/slides/webmidi.html -> Making the Web Rock - Chris Wilson</a></p>
+          <aside class="notes">
           </aside>
         </section>
 
         <section>
           <h2>System Messages</h2>
-          <p class="fragment fade-in">Real time messages - Timing clock, start, continue, stop, active sensing, system reset.</p>
-          <p class="fragment fade-in">Common messages - Timing code, position pointer, select, request</p>
-          <p class="fragment fade-in">Sytem exclusive messages <code>sysex</code></p>
-          <p class="fragment fade-in">Pertinant to extentions of the spec</p>
+          <p class="fragment fade-in">Over riding instrument/controller messages</p>
+          <p class="fragment fade-in">System Common Messages, System Real Time Messages & System Exclusive Messages</p>
+          <p class="fragment fade-in">System Exclusive Messages: Device information, loading/saving settings</p>
           <aside class="notes">
-            <p></p>
-          </aside>
-        </section>        
-        
-        
-        <section>
-          <h2>Extentions on the spec</h2>
-          <p class="fragment fade-in">MIDI Machine Control</p>
-          <p class="fragment fade-in">MIDI Show Control</p>
-          <aside class="notes">
-            <p></p>
+            <p>The system messages part of the GM spec deals with overriding system messages. These include System Common messages, System Real-time messages and System Exclusive messages.</p>
+            <p>The system exclusive messages cover loading and saving patch or instrument information. So for instance if you want to save the state of a piece of hardware, you can ‘dump’ the information, save it and retrieve it later. It also includes manufacturer, product and device information.</p>
+            <p>Only part in the Web spec. There’s lots of part of MIDI specs, we’ve taken the channel message and system exclusive messages part of the General MIDI spec and we have the bulk of the whole Web MIDI spec.</p>
           </aside>
         </section>
 
         <section>
-          <h2>Specs to look out for</h2>
-          <p class="fragment fade-in">Polyfony</p>
-          <p class="fragment fade-in">BLE</p>
+          <h2>Timing Is Important</h2>
           <aside class="notes">
-            <p></p>
+            <p>System Common Messages and System Real-time Messages deal with song selection, song position, the MIDI clock, start, stop, continue messages.</p>
+            <p>And what about starting, stopping, continuing - this timing - this is important in MIDI. MIDI has it's own Time Code as part of the spec. The recording and playback equipment - we’ve only really delay with sound and instrument messages - this is all really still important.</p>
           </aside>
         </section>
 
-
         <section>
-          <h2>The MIDI world is your browser</h2>
-          <p class="fragment fade-in">Also hardware</p>
+          <h2>Let Me Illustrate</h2>
+          <p>Keyboards at the ready!</p>
           <aside class="notes">
-            <p></p>
+            <p>Let me illustrate something to you. We’ve seen data as collected when we use MIDI, but we can also send data - so I can send data to all your MIDI devices.</p>
+            <p>Remember our voice bank - number 391 telephone.</p>
+            <p>Now you noticed that - that latency - that’s the web right. I could have thought about setting them all off at a global time - but that depends on your devices all being set to the same global time.</p>
           </aside>
         </section>
+
         <section>
-          <h2>Thank you</h2>
-          <p>@rumyra</p>
+          <h2>Timing Model Object API (Draft)</h2>
+          <img class="plain" src="public/media/timing.png" />
+          <p><a href="http://webtiming.github.io/timingobject/">webtiming.github.io/timingobject/</a></p>
           <aside class="notes">
-            <p></p>
+            <p>So I read something a draft spec from W3C the other day. The Timing Model Object API.</p>
+          </aside>
+        </section>
+
+        <section>
+          <blockquote>provide a unifying API for timed operation and temporal control</blockquote>
+          <blockquote>encapsulate complexity of distributed time synchronization</blockquote>
+          <aside class="notes">
+            <p>‘QUOTE’</p>
+            <p>This doesn’t just cover timing in MIDI, this covers timing within the browser ecosystem. Audio, video, animation, real time stuff with web sockets we’re doing now.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Machine Control Spec</h2>
+          <blockquote>MIDI systems to communicate with and control … audio recording and production systems</blockquote>
+          <aside class="notes">
+            <p>Something else that’s pertinent in MIDI (as well as timing) is this recording business. There are lots of other specifications in MIDI. One of them is the Machine Control Spec. This came about to allow “MIDI systems to communicate with and control … audio recording and production systems”. Messages protocols include simple play, pause, stop, record to more complex time code based recorders and sequencers.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>MediaRecorder API</h2>
+          <p>Chrome 49 stable and Firefox 25+</p>
+          <aside class="notes">
+            <p>We’ve just seen the MediaRecording API come into Chrome 49 stable and Firefox 25+. Thankfully I don’t need to go into it in detail  - I don’t have enough time. Soledad - supersede - is talking about this. We have a Web API to cover this, it can be separated out from the Web MIDI spec.</p>
+            <p>The Web MIDI API is design as such so it is kept low level and not in anyway complicated - there’s really good reasons for this. There’s a billion bits of MIDI hardware out there, to start adding more ‘features’ could complicate matters - at the moment, you can plug in anything midi enabled and although you might start receiving different values, you’re good to go.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Timeout</h2>
+          <aside class="notes">
+            <p>Let's have a little spec break and take a look at some MIDI enabled hardware shall we?</p>
           </aside>
         </section>
 
@@ -253,24 +316,122 @@ the second is 'note on velocity' and this has a value of 100, (I'm guessing this
             <p>Top: Keyboard, synth, drum kit - also drum machines. You can also get things like guitar pedals, clarinet/sax type thing.</p>
             <p><b>One thing to bear in mind</b> MIDI used to be expensive - the digitals intruments & controllers themselves ran into the hundreds if not thousands of pounds and DIN connectors were the data connectors of choice. This dictated in the computer world - expensive sound cards.</p>
             <p>Bottom: Examples of basic controller. Launchpad (one first USB) - next two similar price AKAI LPD8 & Korg NanoPad2. Last icon iDJ</p>
-            <p>You can see why there's the MMA, making sure all the different manufacturers stay in line with the protocol</p>            
-            <p>Why is any of this relevant to you? Well we have access to this, in the lovely form of a web MIDI api</p>
+            <p>You can see why there's the MMA, making sure all the different manufacturers stay in line with the protocol</p>
           </aside>
         </section>
+
         <section>
-          <h2>Core of MIDI: Messages</h2>
-
-          <p class="fragment fade-in">General MIDI = Channel Messages & System Messages</p>
-
-          <p class="fragment fade-in">Channel messages transmitted on individual channels - depict note on/off, pressure, program change etc...</p>
-
-          <p class="fragment fade-in">System messages are system wide - timing signals, start, continue & stop, system reset etc...</p>
+          <h2>Affordable Hardware</h2>
+          <p></p>
           <aside class="notes">
-            <p>The spec comes can be grouped into two distinct parts. Channels and system level and because it’s a data protocol it’s just specs for messages - data messages.
-
-The channels part of the general MIDI spec describes what you’ve just seen - it’s about note on, note off, velocity (how hard you press), and which frequency is playing, which note, C, D, E etc…</p>
+            <p>So it's these controllers that have really got attention. We're talking affordable hardware, accessible easily from the browser with a really nice data protocol - which we've already seen</p>
+            <p>So what else can we do?</p>
           </aside>
         </section>
+
+        <section>
+          <h2>MIDI Show Control Spec</h2>
+          <blockquote>communicate with and to ... equipment in theatrical, live performance, multi-media, audio-visual and similar environments.</blockquote>
+          <aside class="notes">
+            <p>Well there’s the Show Control - this is lighting, fireworks, foundations - outside hotels in las vegas. This has really been superseded by DMX for the most part and some other things pyrotechnics use, so we can mostly by pass it.</p>
+            <p>However visuals are a very interesting thing...</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>MIDI Visual Control Spec</h2>
+          <blockquote>specification defines a way for MIDI to be used for control of visual presentation devices or systems</blockquote>
+          <blockquote>MIDI Visual Control makes it possible to create visual effects that are synchronized with a musical performance.</blockquote>
+          <p></p>
+          <aside class="notes">
+            <p>I'm just gonna read stright from the spec for this one</p>
+            <p>This specification defines a way for MIDI to be used for control of visual presentation devices or systems. MIDI has expanded far beyond its original intention of being a control language for musical instruments. The robust nature of MIDI and wide support makes MIDI a suitable control system for visual performance or presentation devices.</p>
+            <p>Furthermore, video has become a common component of musical performances in many venues. It makes sense to use MIDI as a way to tie musical performance to visual performance.</p>
+            <p>When performing on a MIDI Visual Control compatible MIDI musical instrument, not only can sound be controlled, but images can be controlled as well. As a result, MIDI Visual Control makes it possible to create visual effects that are synchronized with a musical performance.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>So let's do that!</h2>
+          <p>Keyboards at the ready!</p>
+          <aside class="notes">
+            <p>So I'm going to change your MIDI device</p>
+            <p>Keyboards are great but I really love the idea of crowdsourcing a realy big MIDI controller, by everyone having a small part of it.</p>
+            <p>Let's go with a mini launchpad.</p>
+            <p>But before I do I had this idea about playing with the raw data</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>{144, 60, 100}</h2>
+          <aside class="notes">
+            <p>This is the sort of data we pass right?</p>
+            <p>When it comes to visuals tho - what does that look like.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Mini Launchpad</h2>
+          <aside class="notes">
+            <p>So I'm going to change your MIDI device</p>
+            <p>Keyboards are great, but it'd be nice to play with a controller for this one, as it's probably more suitable - let's go with a mini launchpad.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>MIDI Transport Specifications</h2>
+          <p class="fragment fade-in">Originally 5-pin din cable</p>
+          <p class="fragment fade-in">Today many different transports: USB</p>
+          <aside class="notes">
+            <p>Which brings us back to connector spec which I mention right at the top of the talk</p>
+            <p>This is something the web uniquely gives us - the MIDI transport spec was DIN cables originially. It has been expended to cover other transport mechanisms - USB being the most common.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Bluetooth LE MIDI Spec</h2>
+          <p class="fragment fade-in">Encoding and decoding MIDI data for transmission over</p>
+          <p class="fragment fade-in">Originally 5-pin din cable</p>
+          <p class="fragment fade-in">Also </p>
+          <aside class="notes">
+            <p>There's also the Bluetooth Low Enegery (BLE) spec - which is for encoding and decoding midi data over ble. There's a lot of MIDI enabled hardware coming out right now which is bluetooth enabled</p>
+            <p>Which is great because we have...</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Web Bluetooth API & Web USB API</h2>
+          <p></p>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h2>You thought I was talking about MIDI</h2>
+          <aside class="notes">
+            <p>I came here to talk to you about MIDI - when really secretly I was talking to you about specifications. How they’re important - how a something that’s been around for 30 years is still going strong and is still relevant - much like what we do with our web work. Just get a bunch of enthusiastic, clever, people together and you *will* create something that evolves to start includinging things you would never thinl of. Maing it all the more substantial and long lasting.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>The MIDI world is your browser...</h2>
+          <h3>Javascript is Everywhere!</h3>
+          <div class="fragment fade-in">
+            <p>Thanks!</p>
+            <p>@rumyra</p>
+            <p>I'll tweet the slides</p>
+          </div>
+          <aside class="notes">
+            <p>We're so comfortable now with our whole dev stack being JS - but it's not just a software environment anymore.</p>
+            <p>Tim and I will be around for the next two days with all of our equipment VJing so come and say hello, come and play with our MIDI hardware - can I say that. It’s been an absolute pleasure I really hope I have inspired you today. Thank you.</p>
+          </aside>
+        </section>
+
+<!-- THIS IS IMPORTANT "0x" + x.toString(16); -->
+
+        
+
+        <!-- Piano sounds courtesy of University of Iowa http://theremin.music.uiowa.edu/MISpiano.html-->
 
       </section>
     </div></div>
