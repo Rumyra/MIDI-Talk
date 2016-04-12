@@ -22,7 +22,7 @@
   <script src="reveal/js/reveal.js"></script>
 
   <link href="public/css/extraTalk.css" rel="stylesheet" type="text/css">
-  <!--<script src="https://js.pusher.com/3.0/pusher.min.js"></script>-->
+  <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
   
 </head>
 <body class="talk">
@@ -201,9 +201,16 @@ function onMIDISuccess(midiControl) {
 
         <section>
           <h2>Back to our keyboard</h2>
+          <aside class="notes">
+            <p>So back to our keyboard</p>
+          </aside>
+        </section>
+
+        <section data-state="play-keyboard">
+          <h2>MIDI Voice Bank (Instruments)</h2>
           <p class="fragment fade-in">000 Grand Piano</p>
           <aside class="notes">
-            <p>So back to our keyboard, there's a whole range of voices - or sounds, for instance 000 is Grand Piano.</p>
+            <p>There's a whole range of voices - or sounds, for instance 000 is Grand Piano.</p>
             <p>But it's up to the manufacturer of the instrument to decide how it sounds. The voice bank sounds are mostly instrumental covering percussion, strings, wind instruments etc... there are a few special ones like 389 seashore, 390 bird and 391 telephone...</p>
           </aside>
         </section>
@@ -267,6 +274,8 @@ function onMIDISuccess(midiControl) {
             <p>Now you noticed that - that latency - that’s the web right. I could have thought about setting them all off at a global time - but that depends on your devices all being set to the same global time.</p>
           </aside>
         </section>
+
+        <section data-state="play-ringtone"><h2>Ring!</h2></section>
 
         <section>
           <h2>Timing Model Object API (Draft)</h2>
@@ -362,7 +371,7 @@ function onMIDISuccess(midiControl) {
           </aside>
         </section>
 
-        <section>
+        <section data-state="show-launchpad">
           <h2>{144, 60, 100}</h2>
           <aside class="notes">
             <p>This is the sort of data we pass right?</p>
@@ -370,7 +379,7 @@ function onMIDISuccess(midiControl) {
           </aside>
         </section>
 
-        <section>
+        <section data-state="build-wall">
           <h2>Mini Launchpad</h2>
           <aside class="notes">
             <p>So I'm going to change your MIDI device</p>
@@ -378,7 +387,9 @@ function onMIDISuccess(midiControl) {
           </aside>
         </section>
 
-        <section>
+        <section data-state="visual-demo"></section>
+
+        <section data-state="back-to-talk">
           <h2>MIDI Transport Specifications</h2>
           <p class="fragment fade-in">Originally 5-pin din cable</p>
           <p class="fragment fade-in">Today many different transports: USB</p>
@@ -436,7 +447,9 @@ function onMIDISuccess(midiControl) {
       </section>
     </div></div>
 
-<!-- <div id="pusher" data-key="{{PUSH_KEY}}"></div> -->
+    <div id="vjing"></div>
+
+<div id="pusher" data-key="{{PUSH_KEY}}"></div>
 <script src="reveal/plugin/notes/notes.js"></script>
 <script src="reveal/plugin/highlight/highlight.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
@@ -444,6 +457,21 @@ function onMIDISuccess(midiControl) {
 <!-- <script src="demos.js"></script> -->
 
 <script type="text/javascript">
+// establish connection with pusher
+  var config = document.getElementById('pusher').dataset;
+  var pusher = new Pusher(config.key, {encrypted:true});
+
+  Pusher.channel_auth_endpoint = 'http://localhost:3000/pusher/auth';
+  pusher.connection.bind('state_change', function(states) {
+      console.log("Pusher's current state is " + states.current);
+  });
+
+  // subscribe to channel
+  var channel = pusher.subscribe('private-midi_channel');
+
+  channel.bind('pusher:subscription_succeeded', function() {
+    console.log('subscription succeeded');
+});
 // Reveal~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Reveal.initialize({
 
@@ -486,6 +514,60 @@ Reveal.initialize({
   parallaxBackgroundVertical: ''
 
 });
+
+var vjDiv = document.getElementById('vjing');
+// send right view to audience
+Reveal.addEventListener( 'play-keyboard', function() {
+    channel.trigger(
+      'client-play_keyboard',
+      {
+        "sendSome": 'data'
+      }
+    );
+  }, false);
+
+Reveal.addEventListener( 'play-ringtone', function() {
+    channel.trigger(
+      'client-play_ringtone',
+      {
+        "sendSome": 'data'
+      }
+    );
+  }, false);
+
+Reveal.addEventListener( 'show-launchpad', function() {
+    channel.trigger(
+      'client-show_launchpad',
+      {
+        "sendSome": 'data'
+      }
+    );
+  }, false);
+Reveal.addEventListener( 'build-wall', function() {
+    buildLaunchpadWall();
+  }, false );
+Reveal.addEventListener( 'visualMidiDemo', function() {
+    vjDiv.style.display = 'block';
+  }, false );
+
+Reveal.addEventListener('backToTalk', function() {
+    vjDiv.style.display = 'none';
+  }, false );
+
+// when client joins add to array
+var allUsers = [], allIds = [];
+channel.bind('client-register_user', function(data) {
+  if (!include(allIds, data.userId)) {
+    allUsers.push({'userid': data.userId, 'colour': data.bkgrndColour});
+    allIds.push(data.userId);
+  }
+})
+
+function buildLaunchpadWall() {
+  var
+}
+
+
 </script>
 
 
