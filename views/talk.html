@@ -145,7 +145,7 @@
           <ol>
             <li>A device (Phone)</li>
             <li>A modern browser</li>
-            <li><h3><a href="http://thisurl.com">http://thisurl.com</a></h3></li>
+            <li><a href="http://thisurl.com">http://thisurl.com</a></li>
           </ol>
           <aside class="notes">
             <p>The easiest way for me to explain this to you is for me to illustrate this to you. Let’s take probably one of the most common MIDI enabled instruments - a keyboard.</p>
@@ -154,7 +154,7 @@
 
         <section>
           <h2>Demo</h2>
-          <li><h3><a href="http://thisurl.com">http://thisurl.com</a></h3></li>
+          <p><a href="http://thisurl.com">http://thisurl.com</a></p>
           <aside class="notes">
             <p>You should all see a keyboard - one of the most common MIDI enabled instruments. Now this is the data that the web MIDI api passes back to us when a MIDI device is plugged in. So let's take a look at the code.</p>
           </aside>
@@ -239,7 +239,7 @@ function onMIDISuccess(midiControl) {
         </section>
 
         <section>
-          <h2>Loading & playing sounds</h2>
+          <h2>Creating sounds</h2>
           <pre><code data-trim>const AUDIO_CONTEXT = new (window.AudioContext || window.webkitAudioContext)()
 class Note {
   constructor(note, velocity) {
@@ -421,6 +421,30 @@ class Note {
         <section data-state="visual-demo"></section>
 
         <section data-state="back-to-talk">
+          <h2>How did we do that</h2>
+          <p class="fragment fade-in">Web MIDI</p>
+          <p class="fragment fade-in">Web Audio</p>
+          <p class="fragment fade-in">Web Animation API</p>
+          <aside class="notes">
+            <p>Now things are getting exciting. For every MIDI spec that's been thought of it appears we have a Web spec equivilent</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Web Animation API</h2>
+          <pre><code data-trim>launchpad.animate([
+  {opacity: '1'},
+  {opacity: '0.4'}
+], {
+    duration: 200,
+    iterations: 1
+});</code></pre>
+          <aside class="notes">
+            <p>Animation API - covers css transistions animations and svg. It comes with both the animatable keyframes part of css animations but also a timing layer. Much more control over event snad timelines - something css animations lacked.</p>
+          </aside>
+        </section>
+
+        <section data-state="back-to-talk">
           <h2>MIDI Transport Specifications</h2>
           <p class="fragment fade-in">Originally 5-pin din cable</p>
           <p class="fragment fade-in">Today many different transports: USB</p>
@@ -432,9 +456,7 @@ class Note {
 
         <section>
           <h2>Bluetooth LE MIDI Spec</h2>
-          <p class="fragment fade-in">Encoding and decoding MIDI data for transmission over</p>
-          <p class="fragment fade-in">Originally 5-pin din cable</p>
-          <p class="fragment fade-in">Also </p>
+          <p class="fragment fade-in">Encoding and decoding MIDI data for transmission over BLE</p>
           <aside class="notes">
             <p>There's also the Bluetooth Low Enegery (BLE) spec - which is for encoding and decoding midi data over ble. There's a lot of MIDI enabled hardware coming out right now which is bluetooth enabled</p>
             <p>Which is great because we have...</p>
@@ -442,21 +464,85 @@ class Note {
         </section>
 
         <section>
-          <h2>Web Bluetooth API & Web USB API</h2>
-          <p></p>
+          <h2>Web Bluetooth API</h2>
+          <p class="fragment fade-in">Under a flag in Chrome</p>
+          <p class="fragment fade-in"><code>navigator.bluetooth.requestDevice(options)</code></p>
+          <p class="fragment fade-in">Find out more: <a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web">developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web</a></p>
           <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h2>What possible uses?</h2>
+          <aside class="notes">
+            <p>What possible uses could you have for these things I've just covered. I mean we build software.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Madeon's Adventure Machine</h2>
+          <img class="plain" src="public/media/madeons.png" />
+          <p><a href="http://www.madeon.fr/adventuremachine/">madeon.fr/adventuremachine/</a></p>
+          <aside class="notes">
+            <p>This is a website some of my dear friends at we make awesome sh* built ofr musician Madeon. It's a sort of online synthesiser/sampler. It works without a MIDI controller, but if you have a launchpad, you can plug it in and use it it's compatible - and a lot of fun.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Navigating Web Pages</h2>
+          <p class="fragment fade-in">Accessibility</p>
+          <aside class="notes">
+            <p>What about simply navigating web pages - either as a fun way, or a better way. Keyboards are great, but we never questioned them.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Controlling Dinosaurs</h2>
+          <img class="plain" src="public/media/trex.png" />
+          <p><a href="http://www.blackgangchine.com/">blackgangchine.com/</a></p>
+          <aside class="notes">
+            <p>I did a short version of this talk at a local evening event a couple of months ago, and another friend was talking before me about how he had helped on a project hacking big mechanical dinosaurs. Sounds crazy right.</p>
+            <p>We have this island of the south coast of England and there’s a park there, where the owner has just shipped in these huge dinosaurs. They all have mechanical skeletons which are control by raspberry pis. These in turn can be programmed with javascript. And so we were thinking of ways for these huge dinosaurs to be more crowd interactive. Having a motion or infrared sensor so they turn when they detect walking past…</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Controlling Dinosaurs</h2>
+          <img class="plain" src="public/media/smalldino.png" />
+          <p><a href="http://www.blackgangchine.com/">blackgangchine.com/</a></p>
+          <aside class="notes">
+            <p>But what if the public could control the dinosaurs?</p>
+            <p>Hook up some cheap MIDI controllers and let the kids and big kids come and move the smaller dinos with them</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Control Your Home</h2>
+          <img class="plain" src="public/media/drumpad.png" />
+          <aside class="notes">
+            <p>Out homes are getting more and more connected these days - lights, themostats. Imagine one of these (drum pads) on the wall controlling all those things in your house.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Take it to the streets!</h2>
+          <img class="plain" src="public/media/me.png" />
+          <p><a href="https://24ways.org/2015/bringing-your-code-to-the-streets">24ways.org/2015/bringing-your-code-to-the-streets</a></p>
+          <aside class="notes">
+            <p>You can build a portable VJ kit and carry around the streets of your city, with a laptop, projector and MIDI controller, mixing visuals via your browser.</p>
+            <p>I did this - this is me at christmas, walking around the streets of my city, projecting moving visuals to music - with an attached tray. Read all about it on 24ways.org</p>
           </aside>
         </section>
 
         <section>
           <h2>You thought I was talking about MIDI</h2>
           <aside class="notes">
-            <p>I came here to talk to you about MIDI - when really secretly I was talking to you about specifications. How they’re important - how a something that’s been around for 30 years is still going strong and is still relevant - much like what we do with our web work. Just get a bunch of enthusiastic, clever, people together and you *will* create something that evolves to start includinging things you would never thinl of. Maing it all the more substantial and long lasting.</p>
+            <p>I was talking about MIDI and I hope I taught you something about MIDI - but secretly I was talking to you about specifications. How they’re important - how a something that’s been around for 30 years is still going strong and is still relevant - much like what we do with our web work. Just get a bunch of enthusiastic, clever, people together and you *will* create something that evolves to start including things you would never think of. Maing it all the more substantial and long lasting.</p>
           </aside>
         </section>
 
         <section>
-          <h2>The MIDI world is your browser...</h2>
+          <h2>The MIDI world is in your browser...</h2>
           <h3>Javascript is Everywhere!</h3>
           <div class="fragment fade-in">
             <p>Thanks!</p>
@@ -602,7 +688,7 @@ channel.bind('client-register_user', function(data) {
   }
 })
 channel.bind('client-send_square', function(data) {
-  changeWall(data.userId, data.color, data.square, data.onOff);
+  changeWall(data.userId, data.color, data.square, data.on);
 })
 
 function buildLaunchpadWall() {

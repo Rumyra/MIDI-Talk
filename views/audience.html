@@ -45,9 +45,7 @@
         <i class="key-f" data-note="65">F</i>
         <b class="key-fs" data-note="66">F#</b>
         <i class="key-g" data-note="67">G</i>
-        <b class="key-af" data-note="68">Ab</b>
-        <i class="key-a" data-note="69">A</i>
-        <b class="key-bf key-last" data-note="70">Bb</b>
+        <b class="key-af" data-note="68">Ab</b><i class="key-a" data-note="69">A</i><b class="key-bf key-last" data-note="70">Bb</b>
       </section>
     </div><!--instrument-->
   </div><!--keyboard-data-->
@@ -62,10 +60,7 @@
     </section>
 
     <div id="controls">
-      <button data-state="off">0</button>
-      <button data-state="off">1</button>
-      <button data-state="off">2</button>
-      <button data-state="off">3</button>
+      <button data-state="off">0</button><button data-state="off">1</button><button data-state="off">2</button><button data-state="off">3</button>
     </div>
 
   </div>
@@ -128,11 +123,15 @@ channel.bind('client-play_keyboard', function(data) {
 })
 channel.bind('client-show_launchpad', function(data) {
   localStorage.setItem('page', '3');
+  launchpad.style.display = 'block';
+  keyboardDiv.style.display = 'none';
 })
 if (localStorage.getItem('page') === '2') {
-  //display correct display
+  
+
 } else if (localStorage.getItem('page') === '3') {
-  //display correct display - visual
+  launchpad.style.display = 'block';
+  keyboardDiv.style.display = 'none';
 }
 
 
@@ -140,8 +139,8 @@ if (localStorage.getItem('page') === '2') {
 //keyboard-data - run correct function based on data state
 var allKeys = document.getElementById('octave').children,
     dataList = document.querySelector('#midi-data ul'),
-    audioTracks = document.getElementsByTagName('audio');
-    console.log(audioTracks);
+    audioTracks = document.getElementsByTagName('audio'),
+    keyboardDiv = document.getElementById('keyboard-data');
 
 for (var i=0; i<allKeys.length; i++) {
   allKeys[i].addEventListener('mousedown', function() {
@@ -197,13 +196,13 @@ function sendSquare(userId, squareNo, onOff) {
         console.log(bkgrndColour);
         this.style.background = bkgrndColour;
         changeSquare(visualSquares[requiredNum], bkgrndColour);
-        sendSquare(username, requiredNum, true);
+        sendSquare(username, requiredNum, false);
         this.dataset.state = 'on';
       } else {
         this.style.background = 'lightgrey';
         visualSquares[requiredNum].style.backgroundColor = 'transparent';
         this.dataset.state = 'off';
-        sendSquare(username, requiredNum, false);
+        sendSquare(username, requiredNum, true);
       }
     })
   }

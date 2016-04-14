@@ -13,7 +13,7 @@ body {background: $backgroundColor;}
 
 .page {
   width:300px; /*height:200px;*/
-  padding:20px; margin:0px auto;
+  padding:19px; margin:0px auto;
 }
 
 #midi-data {
@@ -65,6 +65,7 @@ body {background: $backgroundColor;}
 }
 
 // launchpad
+#launchpad {display:none;}
 #visual {
   width:48%; margin:0px auto 20px;
   em {
