@@ -21,7 +21,7 @@
 </head>
 <body class="audience">
 
-  <audio src="public/octave/c4.mp3" data-note="60"></audio>
+  <audio src="public/media/ring.mp3"></audio>
   <!-- phone sound to play -->
   <audio src="public/octave/c4.mp3" data-note="60"></audio>
 
@@ -103,7 +103,7 @@ if (localStorage.getItem('username')) {
 if (localStorage.getItem('colour')) {
   var bkgrndColour = localStorage.getItem('colour');
 } else {
-  var bkgrndColour = [getRandomInt(0,360),getRandomInt(60, 80),getRandomInt(50,80)];
+  var bkgrndColour = 'hsla('+getRandomInt(0,360)+','+getRandomInt(60, 80)+'%,'+getRandomInt(50,80)+'%, 1)';
 }
   
 localStorage.setItem('page', '1');
@@ -123,10 +123,11 @@ function sendUser(name, colour) {
 
 //persist data-state
 channel.bind('client-play_keyboard', function(data) {
-  localStorage.setItem('page') = '2';
+  localStorage.setItem('page', '2');
+  sendUser(username, bkgrndColour);
 })
 channel.bind('client-show_launchpad', function(data) {
-  localStorage.setItem('page') = '3';
+  localStorage.setItem('page', '3');
 })
 if (localStorage.getItem('page') === '2') {
   //display correct display
@@ -160,9 +161,10 @@ newItem.appendChild(document.createTextNode('[128,'+this.dataset.note+',64]'));
 
 
 // receive play event
-channel.bind('client_play-ringtone', function() {
+channel.bind('client-play_ringtone', function() {
   // play sound
-  audioTracks[1].play();  
+  audioTracks[0].play();
+  console.log('played');
 })
 // add highlighted data to 
 // add hex here if time
@@ -173,22 +175,35 @@ var launchpad = document.getElementById('launchpad'),
   launchpadButtons = launchpad.getElementsByTagName('button'),
   visualSquares = launchpad.getElementsByTagName('em');
 
-function changeSquare(squareEl, bkgrndArray) {
-  squareEl.style.backgroundColor = 'hsla('+bkgrndArray[0]+','+bkgrndArray[1]+'%,'+bkgrndArray[2]+'%, 1)';
+function changeSquare(squareEl, bkgrnd) {
+  squareEl.style.backgroundColor = bkgrnd;
+}
+function sendSquare(userId, squareNo, onOff) {
+  channel.trigger(
+    'client-send_square',
+    {
+      "userId": userId,
+      "color": bkgrndColour,
+      "square": squareNo,
+      "on": onOff
+    }
+  );
 }
 
   for (var j=0; j<launchpadButtons.length; j++) {
     launchpadButtons[j].addEventListener('mousedown', function() {
       requiredNum = parseInt(this.innerHTML, 10);
       if(this.dataset.state === 'off') {
-        console.log(this);
-        this.style.background = 'white';
+        console.log(bkgrndColour);
+        this.style.background = bkgrndColour;
         changeSquare(visualSquares[requiredNum], bkgrndColour);
+        sendSquare(username, requiredNum, true);
         this.dataset.state = 'on';
       } else {
-        this.style.background = 'grey';
-        visualSquares[requiredNum].style.backgroundColor = 'black';
+        this.style.background = 'lightgrey';
+        visualSquares[requiredNum].style.backgroundColor = 'transparent';
         this.dataset.state = 'off';
+        sendSquare(username, requiredNum, false);
       }
     })
   }
@@ -196,7 +211,6 @@ function changeSquare(squareEl, bkgrndArray) {
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
-
 </script>
 
 </body>
