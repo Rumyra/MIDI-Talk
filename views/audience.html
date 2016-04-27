@@ -15,25 +15,202 @@
   <meta name="dcterms.rightsHolder" content="Ruth John for Rumyra Ltd, United Kingdom, 2015">
   <title>Let's talk about MIDI!</title>
 
-  <!-- <link href="css/extraTalk.css" rel="stylesheet" type="text/css"> -->
+  <link href="public/css/audience.css" rel="stylesheet" type="text/css">
   <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
   
 </head>
 <body class="audience">
 
-  <div id="intro">
-    <h2>Let's Talk About MIDI</h2>
-    <p>An interactive presentation by @rumyra</p>
-  </div>
+  <audio src="public/media/ring.mp3"></audio>
+  <!-- phone sound to play -->
+  <audio src="public/octave/c4.mp3" data-note="60"></audio>
 
-  <div id="keyboard">
+  <div class="page" id="keyboard-data" data-display="show-data">
 
-
-    <section id="keys">
-
-
+    <section id="midi-data">
+      <ul></ul>
     </section>
+
+    <div class="instrument" id="keyboard">
+      <section id="octave">
+        <b class="key-af" data-note="56">Ab</b>
+        <i class="key-a" data-note="57">A</i>
+        <b class="key-bf" data-note="58">Bb</b>
+        <i class="key-b" data-note="59">B</i>
+        <i class="key-c" data-note="60">C</i>
+        <b class="key-cs" data-note="61">C#</b>
+        <i class="key-d" data-note="62">D</i>
+        <b class="key-ef" data-note="63">Eb</b>
+        <i class="key-e" data-note="64">E</i>
+        <i class="key-f" data-note="65">F</i>
+        <b class="key-fs" data-note="66">F#</b>
+        <i class="key-g" data-note="67">G</i>
+        <b class="key-af" data-note="68">Ab</b><i class="key-a" data-note="69">A</i><b class="key-bf key-last" data-note="70">Bb</b>
+      </section>
+    </div><!--instrument-->
+  </div><!--keyboard-data-->
+
+  <div class="page" id="launchpad">
+
+    <section id="visual">
+      <em></em>
+      <em></em>
+      <em></em>
+      <em></em>
+    </section>
+
+    <div id="controls">
+      <button data-state="off">0</button><button data-state="off">1</button><button data-state="off">2</button><button data-state="off">3</button>
+    </div>
+
   </div>
+<div id="pusher" data-key="{{PUSH_KEY}}"></div>
+<script type="text/javascript">
+//Give the Audio element a stop function
+HTMLAudioElement.prototype.stop = function()
+{
+    this.pause();
+    this.currentTime = 0.0;
+}
+// establish connection with pusher
+  var config = document.getElementById('pusher').dataset;
+  var pusher = new Pusher(config.key, {encrypted:true});
+
+  Pusher.channel_auth_endpoint = 'http://localhost:3000/pusher/auth';
+  pusher.connection.bind('state_change', function(states) {
+      console.log("Pusher's current state is " + states.current);
+  });
+
+  // subscribe to channel
+  var channel = pusher.subscribe('private-midi_channel');
+
+  channel.bind('pusher:subscription_succeeded', function() {
+    console.log('subscription succeeded');
+  });
+
+//set up username (uniqueid) and view state
+// add time to this
+if (localStorage.getItem('username')) {
+  var username = localStorage.getItem('username');
+} else {
+  var username = getRandomInt(0, 9999);
+}
+if (localStorage.getItem('colour')) {
+  var bkgrndColour = localStorage.getItem('colour');
+} else {
+  var bkgrndColour = 'hsla('+getRandomInt(0,360)+','+getRandomInt(60, 80)+'%,'+getRandomInt(50,80)+'%, 1)';
+}
+  
+localStorage.setItem('page', '1');
+localStorage.setItem('username', username);
+localStorage.setItem('colour', bkgrndColour);
+
+// send user data to master to create array
+function sendUser(name, colour) {
+  channel.trigger(
+    'client-register_user',
+    {
+      "userId": name,
+      "bkgrndColour": colour
+    }
+  );
+}
+
+//persist data-state
+channel.bind('client-play_keyboard', function(data) {
+  localStorage.setItem('page', '2');
+  sendUser(username, bkgrndColour);
+})
+channel.bind('client-show_launchpad', function(data) {
+  localStorage.setItem('page', '3');
+  launchpad.style.display = 'block';
+  keyboardDiv.style.display = 'none';
+})
+if (localStorage.getItem('page') === '2') {
+  
+
+} else if (localStorage.getItem('page') === '3') {
+  launchpad.style.display = 'block';
+  keyboardDiv.style.display = 'none';
+}
+
+
+// KEYBOARD DATA----------------------------------
+//keyboard-data - run correct function based on data state
+var allKeys = document.getElementById('octave').children,
+    dataList = document.querySelector('#midi-data ul'),
+    audioTracks = document.getElementsByTagName('audio'),
+    keyboardDiv = document.getElementById('keyboard-data');
+
+for (var i=0; i<allKeys.length; i++) {
+  allKeys[i].addEventListener('mousedown', function() {
+    var newItem = document.createElement('li');
+newItem.appendChild(document.createTextNode('[144,'+this.dataset.note+',100]'));
+    dataList.appendChild(newItem);
+
+    audioTracks[0].play();
+  });
+    allKeys[i].addEventListener('mouseup', function() {
+    var newItem = document.createElement('li');
+newItem.appendChild(document.createTextNode('[128,'+this.dataset.note+',64]'));
+    dataList.appendChild(newItem);
+    audioTracks[0].stop();
+  });
+}
+
+
+// receive play event
+channel.bind('client-play_ringtone', function() {
+  // play sound
+  audioTracks[0].play();
+  console.log('played');
+})
+// add highlighted data to 
+// add hex here if time
+
+//VISUALS-------------------------------
+
+var launchpad = document.getElementById('launchpad'),
+  launchpadButtons = launchpad.getElementsByTagName('button'),
+  visualSquares = launchpad.getElementsByTagName('em');
+
+function changeSquare(squareEl, bkgrnd) {
+  squareEl.style.backgroundColor = bkgrnd;
+}
+function sendSquare(userId, squareNo, onOff) {
+  channel.trigger(
+    'client-send_square',
+    {
+      "userId": userId,
+      "color": bkgrndColour,
+      "square": squareNo,
+      "on": onOff
+    }
+  );
+}
+
+  for (var j=0; j<launchpadButtons.length; j++) {
+    launchpadButtons[j].addEventListener('mousedown', function() {
+      requiredNum = parseInt(this.innerHTML, 10);
+      if(this.dataset.state === 'off') {
+        console.log(bkgrndColour);
+        this.style.background = bkgrndColour;
+        changeSquare(visualSquares[requiredNum], bkgrndColour);
+        sendSquare(username, requiredNum, false);
+        this.dataset.state = 'on';
+      } else {
+        this.style.background = 'lightgrey';
+        visualSquares[requiredNum].style.backgroundColor = 'transparent';
+        this.dataset.state = 'off';
+        sendSquare(username, requiredNum, true);
+      }
+    })
+  }
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+</script>
 
 </body>
 </html>
