@@ -48,18 +48,17 @@ body {background: $backgroundColor;}
     display:inline-block;
     position:relative; z-index:5;
     box-shadow:1px 1px darkgrey;
+    color: transparent;
   }
   i {
     width:34px; height:176px;
     background:white;
-    color:white;
   }
   b {
     z-index:10;
     width:26px; height:104px;
     margin:0px -15px;
     background:black;
-    color:black;
   }
   .key-last {position:absolute; top:0px; right:0px;}
 }
