@@ -210,15 +210,17 @@ function finishedLoading(bufferList) {
   })
 
 }
-window.onload = loadSounds();
+// make keyboard active
+channel.bind('client-play_keyboard', function() {
+  loadSounds();
+})
 
 // receive play event
 channel.bind('client-play_ringtone', function() {
   // play sound
   audioTracks[0].play();
 })
-// add highlighted data to 
-// add hex here if time
+
 
 //VISUALS-------------------------------
 
