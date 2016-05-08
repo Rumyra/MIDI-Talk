@@ -13,15 +13,10 @@ app.use(bodyParser.urlencoded());
 app.engine('html', HTMLing.express(__dirname + '/views/'));
 app.set('view engine', 'html');
 
-// main view index.html
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
-});
-
-app.get('/talk', function(req, res){
 //  res.sendFile(__dirname + '/public/talk.html');
     req.PUSH_KEY = process.env.PUSH_KEY;
-    res.render('talk', req);
+    res.render('index', req);
 });
 
 app.get('/audience', function(req, res){

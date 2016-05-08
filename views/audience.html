@@ -22,8 +22,6 @@
 <body class="audience">
 
   <audio src="public/media/ring.mp3"></audio>
-  <!-- phone sound to play -->
-  <audio src="public/octave/c4.mp3" data-note="60"></audio>
 
   <div class="page" id="keyboard-data" data-display="show-data">
 
@@ -65,6 +63,7 @@
 
   </div>
 <div id="pusher" data-key="{{PUSH_KEY}}"></div>
+<script src="public/buffer-loader.js"></script>
 <script type="text/javascript">
 //Give the Audio element a stop function
 HTMLAudioElement.prototype.stop = function()
@@ -144,29 +143,84 @@ var allKeys = document.getElementById('octave').children,
 
 for (var i=0; i<allKeys.length; i++) {
   allKeys[i].addEventListener('mousedown', function() {
+    this.style.backgroundColor = 'hsla(340,88%,60%,1)';
     var newItem = document.createElement('li');
 newItem.appendChild(document.createTextNode('[144,'+this.dataset.note+',100]'));
     dataList.appendChild(newItem);
 
-    audioTracks[0].play();
   });
-    allKeys[i].addEventListener('mouseup', function() {
+  allKeys[i].addEventListener('mouseup', function() {
+    if (this.nodeName === 'B') {
+      this.style.backgroundColor = 'black';
+    } else {
+      this.style.backgroundColor = 'white';
+    }
     var newItem = document.createElement('li');
 newItem.appendChild(document.createTextNode('[128,'+this.dataset.note+',64]'));
     dataList.appendChild(newItem);
-    audioTracks[0].stop();
   });
 }
 
+// sounds
+var context, bufferLoader;
+function loadSounds() {
+  // Fix up prefixing
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  context = new AudioContext();
+
+  bufferLoader = new BufferLoader(
+    context,
+    [
+      'public/octave/af3.mp3',
+      'public/octave/a3.mp3',
+      'public/octave/bf3.mp3',
+      'public/octave/b3.mp3',
+      'public/octave/c4.mp3',
+      'public/octave/cs4.mp3',
+      'public/octave/d4.mp3',
+      'public/octave/ef4.mp3',
+      'public/octave/e4.mp3',
+      'public/octave/f4.mp3',
+      'public/octave/fs4.mp3',
+      'public/octave/g4.mp3',
+      'public/octave/af4.mp3',
+      'public/octave/a4.mp3',
+      'public/octave/bf4.mp3'
+    ],
+    finishedLoading
+    );
+
+  bufferLoader.load();
+}
+
+var playSounds = [];
+
+function finishedLoading(bufferList) {
+
+  var arr = Array.prototype.slice.call( allKeys );
+
+  arr.map(function(key, j) {
+    key.addEventListener('mousedown', function() {
+      var source = context.createBufferSource();;
+      source.buffer = bufferList[j];
+      source.connect(context.destination);
+      source.start(0);
+      source.stop(300);
+    });
+  })
+
+}
+// make keyboard active
+channel.bind('client-play_keyboard', function() {
+  loadSounds();
+})
 
 // receive play event
 channel.bind('client-play_ringtone', function() {
   // play sound
   audioTracks[0].play();
-  console.log('played');
 })
-// add highlighted data to 
-// add hex here if time
+
 
 //VISUALS-------------------------------
 

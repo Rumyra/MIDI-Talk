@@ -36,14 +36,9 @@
         <section>
           <h2>Hello, my name is Ruth</h2>
           <h3 class="fragment fade-in">@rumyra</h3>
-          <h3 class="fragment fade-in">Google Developer Expert</h3>
+          <h3 class="fragment fade-in">Here to talk about MIDI & Audio</h3>
           <aside class="notes">
             <p>Hi my names Ruth - I’m from the UK. I’m from a web development background, I currently work in research and development. You can find me on the internets as @rumyra</p>
-          </aside>
-        </section>
-        <section>
-          <h1>Let's Talk About MIDI</h1>
-          <aside class="notes">
             <p>I came here today to talk to you about MIDI. It seems a strange topic, but one of the reasons I wanted to come and talk about it is to address a common misconception about MIDI, not just within the realms as what we do as developers but also in the wider world.</p>
           </aside>
         </section>
@@ -133,7 +128,8 @@
 
           <p class="fragment fade-in">General MIDI: Channel Messages & System Messages</p>
 
-          <p class="fragment fade-in">Channel messages: Voice messages & Mode messages</p>
+          <!--<p class="fragment fade-in">Channel messages: Voice messages & Mode messages</p>-->
+          <p class="fragment fade-in">Detail? Let me show you.</p>
           <aside class="notes">
             <p>Core of MIDI is messages - data messages, this digital protocal. The GM spec comes can be grouped into two distinct parts. Channels and system level.</p>
             <p>There are two types of channel messages - voice and mode. Voice messages are sent over voice channels and mode messages are sent over an instruments basic channel.</p>
@@ -156,6 +152,8 @@
         <section>
           <h2>Demo</h2>
           <p><a href="http://tiny.cc/jsconfuy">tiny.cc/jsconfuy</a></p>
+          <p data-height="524" data-theme-id="1345" data-slug-hash="jWdWdp" data-default-tab="result" data-user="Rumyra" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/Rumyra/pen/jWdWdp/">Music keyboard</a> by Rumyra (<a href="http://codepen.io/Rumyra">@Rumyra</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
           <aside class="notes">
             <p>You should all see a keyboard - one of the most common MIDI enabled instruments. Now this is the data that the web MIDI api passes back to us when a MIDI device is plugged in. So let's take a look at the code.</p>
           </aside>
@@ -163,15 +161,20 @@
 
         <section>
           <h2>Web MIDI API</h2>
-          <pre><code data-trim>navigator.requestMIDIAccess({ sysex: false }).then(onMIDISuccess, onMIDIFailure);
+          <pre><code data-trim>// call requestMIDIAccess
+navigator.requestMIDIAccess({ sysex: false }).then(onMIDISuccess, onMIDIFailure);
 
+// on success of MIDI device recognised
 function onMIDISuccess(midiControl) {
   var MIDI = midiControl;
+
+  // log each input data
   MIDI.inputs.forEach(function (input) {
     console.log(input.onmidimessage.data)
   }
 }
           </code></pre>
+          <p>So far only Chrome & Opera</p>
           <aside class="notes">
             <p>You make sure it’s avail, listen for attached device, when plugged in you can receive these afore mentioned messages. All I’m doing here is logging those messages - you can do whatever you want with them. Notice the sysex false - this is related to system messages and I will get back to that in a moment.</p>
             <p>Now there’s a window of opportunity - there’s plenty of stuff we can start coding with that!</p>
@@ -190,13 +193,57 @@ function onMIDISuccess(midiControl) {
           </aside>
         </section>
 
+        
+
         <section>
           <h2>What about sound?</h2>
-          <p class="fragment fade-in">Mode messages: modulation, volume, panning, sustain, all sounds off, all notes, off, reset controllers.</p>
+          <!-- <p class="fragment fade-in">Mode messages: modulation, volume, panning, sustain, all sounds off, all notes, off, reset controllers.</p>
           <p class="fragment fade-in">Voice Bank</p>
           <aside class="notes">
             <p>We've already seen which note, but channel mode messages carry information about modulation, volume, panning, sustain - as well as things like all sounds off, all notes off, reset controllers etc...</p>
             <p>It also includes voice bank selection - the spec defines a whole range on instruments in it's voice bank</p>
+          </aside> -->
+        </section>
+
+        <section>
+          <h2>Web Audio API</h2>
+          <p class="fragment fade-in">The classic companion to the Web MIDI API</p>
+          <p class="fragment fade-in">MIDI data -> Play sounds OR Alter sounds</p>
+          <aside class="notes">
+            <p>So the web audio API - the classic companion to the Web MIDI API. You have an instrument or controller and you set up the Web Audio API to play sounds when certain data is received.</p>
+            <p>I'm sure we've all seen the web audio API - here I'm using a sample</p>
+            <p>So there are 3 main ways to create sounds with the audio API. Make them with an oscillator node. Load them from the html audio element - or we can request files from the server and load them into a buffer for playback.</p>
+          </aside>
+        </section>
+
+        <section data-state="play-keyboard">
+          <h2>Make sounds?</h2>
+<pre><code data-trim>// with oscillator
+var oscillator = audioAPI.createOscillator();
+
+// grab from audio or video element
+var mediaSource = audioAPI.createMediaElementSource(element);
+
+// 'The Jake Method' take it from a stream source
+var streamSource = audioAPI.createMediaStreamSource(stream);
+
+// request file & load into buffer
+var bufferSource = audioAPI.createBufferSource();
+var request = new XMLHttpRequest();
+...
+          </code></pre>
+          <p class="fragment fade-in">Keyboards!</p>
+          <aside class="notes">
+            <p>Here I'm using a class created by Boris Smus on HTML5 rocks - audio buffer class.</p>
+          </aside>
+        </section>
+
+        <section data-state="play-keyboard">
+          <h2>Demo</h2>
+          <aside class="notes">
+            <p>Here I'm pre loading all the piano samples and holding them in the buffer array, ready to be played when I receive the matched MIDI data</p>
+            <p>We could of course generate sounds with the ocillator node, we could add filters when dials are turned on MIDI controllers.</p>
+            <p>There's a whole range of audio/MIDI stuff - the best examples are 
           </aside>
         </section>
 
@@ -210,37 +257,7 @@ function onMIDISuccess(midiControl) {
           </aside>
         </section>
 
-        <!-- <section>
-          <h2>Back to our keyboard</h2>
-          <aside class="notes">
-            <p>So back to our keyboard</p>
-          </aside>
-        </section>
-
-        <section data-state="play-keyboard">
-          <h2>MIDI Voice Bank (Instruments)</h2>
-          <p class="fragment fade-in">000 Grand Piano</p>
-          <aside class="notes">
-            <p>There's a whole range of voices - or sounds, for instance 000 is Grand Piano.</p>
-            <p>But it's up to the manufacturer of the instrument to decide how it sounds. The voice bank sounds are mostly instrumental covering percussion, strings, wind instruments etc... there are a few special ones like 389 seashore, 390 bird and 391 telephone...</p>
-            <p>So like this sound is not part of the Web MIDI Spec - for that we need the Web Audio API...</p>
-          </aside>
-        </section> -->
-
-
-
-        <section data-state="play-keyboard">
-          <h2>Web Audio API</h2>
-          <p class="fragment fade-in">The classic companion to the Web MIDI API</p>
-          <p class="fragment fade-in">MIDI data -> Play sounds</p>
-          <aside class="notes">
-            <p>So the web audio API - the classic companion to the Web MIDI API. You have an instrument or controller and you set up the Web Audio API to play sounds when certain data is received.</p>
-            <p>I'm sure we've all seen the web audio API - here I'm using a sample</p>
-          </aside>
-        </section>
-
         <section>
-          <h2>Creating sounds</h2>
           <pre><code data-trim>const AUDIO_CONTEXT = new (window.AudioContext || window.webkitAudioContext)()
 class Note {
   constructor(note, velocity) {
@@ -261,6 +278,7 @@ class Note {
     this.OSC.frequency.value = this.NOTE
   }
           </code></pre>
+          <p><a href="http://codepen.io/davemackintosh/pen/XmrqLV?editors=0010">codepen.io/davemackintosh/pen/XmrqLV -> Oscillated MIDI triggered sounds - Dave Mackintosh</a></p>
           <aside class="notes">
             <p>Here I'm pre loading all the piano samples and holding them in the buffer array, ready to be played when I receive the matched MIDI data</p>
             <p>We could of course generate sounds with the ocillator node, we could add filters when dials are turned on MIDI controllers.</p>
@@ -269,29 +287,11 @@ class Note {
         </section>
 
         <section>
-          <h2>Audio/MIDI Examples</h2>
-          <p><a href="http://codepen.io/davemackintosh/pen/XmrqLV?editors=0010">codepen.io/davemackintosh/pen/XmrqLV -> Oscillated MIDI triggered sounds - Dave Mackintosh</a></p>
-          <p class="fragment fade-in"><a href="http://webaudiodemos.appspot.com/">webaudiodemos.appspot.com -> Cool demos</a></p>
-          <p class="fragment fade-in"><a href="https://webaudiodemos.appspot.com/slides/webmidi.html#/">webaudiodemos.appspot.com/slides/webmidi.html -> Making the Web Rock - Chris Wilson</a></p>
-          <aside class="notes">
-          </aside>
-        </section>
-
-        <section>
-          <h2>System Messages</h2>
-          <p class="fragment fade-in">Over riding instrument/controller messages</p>
-          <p class="fragment fade-in">System Common Messages, System Real Time Messages & System Exclusive Messages</p>
-          <p class="fragment fade-in">System Exclusive Messages: Device information, loading/saving settings <code>sysex:false</code></p>
-          <aside class="notes">
-            <p>The system messages part of the GM spec deals with overriding system messages. These include System Common messages, System Real-time messages and System Exclusive messages.</p>
-            <p>The system exclusive messages cover loading and saving patch or instrument information. So for instance if you want to save the state of a piece of hardware, you can ‘dump’ the information, save it and retrieve it later. It also includes manufacturer, product and device information.</p>
-            <p>Only part in the Web spec. There’s lots of part of MIDI specs, we’ve taken the channel message and system exclusive messages part of the General MIDI spec and we have the bulk of the whole Web MIDI spec.</p>
-          </aside>
-        </section>
-
-        <section>
           <h2>Timing Is Important</h2>
+          <p>MIDI Clock</p>
+          <p>play, pause, record</p>
           <aside class="notes">
+            <p>Timing is important right - I mean this is music...</p>
             <p>System Common Messages and System Real-time Messages deal with song selection, song position, the MIDI clock, start, stop, continue messages.</p>
             <p>And what about starting, stopping, continuing - this timing - this is important in MIDI. MIDI has it's own Time Code as part of the spec. The recording and playback equipment - we’ve only really delay with sound and instrument messages - this is all really still important.</p>
           </aside>
@@ -370,6 +370,8 @@ class Note {
           </aside>
         </section>
 
+        <section data-background="public/more.gif"></section>
+
         <section>
           <h2>MIDI Show Control Spec</h2>
           <blockquote>communicate with and to ... equipment in theatrical, live performance, multi-media, audio-visual and similar environments.</blockquote>
@@ -403,19 +405,19 @@ class Note {
           </aside>
         </section>
 
-        <section data-state="show-launchpad">
-          <h2>(144, 60, 100)</h2>
-          <aside class="notes">
-            <p>This is the sort of data we pass right?</p>
-            <p>When it comes to visuals tho - what does that look like.</p>
-          </aside>
-        </section>
-
         <section data-state="build-wall">
           <h2>Mini Launchpad</h2>
           <aside class="notes">
             <p>So I'm going to change your MIDI device</p>
             <p>Keyboards are great, but it'd be nice to play with a controller for this one, as it's probably more suitable - let's go with a mini launchpad.</p>
+          </aside>
+        </section>
+
+        <section data-state="show-launchpad">
+          <h2>(144, 60, 100)</h2>
+          <aside class="notes">
+            <p>This is the sort of data we pass right?</p>
+            <p>When it comes to visuals tho - what does that look like.</p>
           </aside>
         </section>
 
@@ -457,7 +459,7 @@ class Note {
 
         <section>
           <h2>Bluetooth LE MIDI Spec</h2>
-          <p class="fragment fade-in">Encoding and decoding MIDI data for transmission over BLE</p>
+          <p class="fragment fade-in">Encoding and decoding MIDI data over BLE</p>
           <aside class="notes">
             <p>There's also the Bluetooth Low Enegery (BLE) spec - which is for encoding and decoding midi data over ble. There's a lot of MIDI enabled hardware coming out right now which is bluetooth enabled</p>
             <p>Which is great because we have...</p>
@@ -497,38 +499,34 @@ class Note {
           </aside>
         </section>
 
-        <section>
-          <h2>Dinosaurs</h2>
-          <img class="plain" src="public/media/trex.png" />
-          <p><a href="http://www.blackgangchine.com/">blackgangchine.com/</a></p>
+        <section data-background="public/media/trex.png">
+          <h2 style="color:white;">Dinosaurs</h2>
+          <p><a style="color:white;" href="http://www.blackgangchine.com/">blackgangchine.com/</a></p>
           <aside class="notes">
             <p>I did a short version of this talk at a local evening event a couple of months ago, and another friend was talking before me about how he had helped on a project hacking big mechanical dinosaurs. Sounds crazy right.</p>
             <p>We have this island of the south coast of England and there’s a park there, where the owner has just shipped in these huge dinosaurs. They all have mechanical skeletons which are control by raspberry pis. These in turn can be programmed with javascript. And so we were thinking of ways for these huge dinosaurs to be more crowd interactive. Having a motion or infrared sensor so they turn when they detect walking past…</p>
           </aside>
         </section>
 
-        <section>
-          <h2>Dinosaurs</h2>
-          <img class="plain" src="public/media/smalldino.png" />
-          <p><a href="http://www.blackgangchine.com/">blackgangchine.com/</a></p>
+        <section data-background="public/media/smalldino.png">
+          <h2 style="color:white;">Dinosaurs</h2>
+          <p><a style="color:white;" href="http://www.blackgangchine.com/">blackgangchine.com/</a></p>
           <aside class="notes">
             <p>But what if the public could control the dinosaurs?</p>
             <p>Hook up some cheap MIDI controllers and let the kids and big kids come and move the smaller dinos with them</p>
           </aside>
         </section>
 
-        <section>
-          <h2>Control Your Home</h2>
-          <img class="plain" src="public/media/drumpad.png" />
+        <section data-background="public/media/drumpad.png">
+          <h2 style="color:purple;">Control Your Home</h2>
           <aside class="notes">
             <p>Out homes are getting more and more connected these days - lights, themostats. Imagine one of these (drum pads) on the wall controlling all those things in your house.</p>
           </aside>
         </section>
 
-        <section>
-          <h2>Take it to the streets!</h2>
-          <img class="plain" src="public/media/me.jpg" />
-          <p><a href="https://24ways.org/2015/bringing-your-code-to-the-streets">24ways.org/2015/bringing-your-code-to-the-streets</a></p>
+        <section data-background="public/media/me.jpg">
+          <h2 style="color:white;">Take it to the streets!</h2>
+          <p><a style="color:white" href="https://24ways.org/2015/bringing-your-code-to-the-streets">24ways.org/2015/bringing-your-code-to-the-streets</a></p>
           <aside class="notes">
             <p>You can build a portable VJ kit and carry around the streets of your city, with a laptop, projector and MIDI controller, mixing visuals via your browser.</p>
             <p>I did this - this is me at christmas, walking around the streets of my city, projecting moving visuals to music - with an attached tray. Read all about it on 24ways.org</p>
@@ -543,7 +541,7 @@ class Note {
         </section>
 
         <section>
-          <h2>The MIDI world is your browser...</h2>
+          <h2>The MIDI world is in your WEB browser...</h2>
           <h3>Javascript is Everywhere!</h3>
           <div class="fragment fade-in">
             <p>Thanks!</p>
