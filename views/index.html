@@ -238,36 +238,14 @@ var request = new XMLHttpRequest();
           </aside>
         </section>
 
-
         <section data-state="play-keyboard">
-          <h2>Sounds!</h2>
-          <pre><code data-trim>const AUDIO_CONTEXT = new (window.AudioContext || window.webkitAudioContext)()
-class Note {
-  constructor(note, velocity) {
-    this.NOTE = note * 10
-    this.VELOCITY = velocity / 127
-    
-    this.OSC  = AUDIO_CONTEXT.createOscillator()
-    this.GAIN = AUDIO_CONTEXT.createGain()
-    
-    this.OSC.connect(this.GAIN)
-    this.GAIN.connect(AUDIO_CONTEXT.destination)
-    
-    console.log('NOTE %s @ %s', this.NOTE, this.VELOCITY)
-    
-    this.GAIN.gain.value = this.VELOCITY
-    
-    this.OSC.type = 'square'
-    this.OSC.frequency.value = this.NOTE
-  }
-          </code></pre>
+          <h2>Demo</h2>
           <aside class="notes">
             <p>Here I'm pre loading all the piano samples and holding them in the buffer array, ready to be played when I receive the matched MIDI data</p>
             <p>We could of course generate sounds with the ocillator node, we could add filters when dials are turned on MIDI controllers.</p>
             <p>There's a whole range of audio/MIDI stuff - the best examples are 
           </aside>
         </section>
-
 
         <section data-state="playVid">
           <video src="public/media/akai.mp4" controls id="akai"></video>
@@ -279,8 +257,7 @@ class Note {
           </aside>
         </section>
 
-        <section data-state="play-keyboard">
-          <h2>Sounds!</h2>
+        <section>
           <pre><code data-trim>const AUDIO_CONTEXT = new (window.AudioContext || window.webkitAudioContext)()
 class Note {
   constructor(note, velocity) {
