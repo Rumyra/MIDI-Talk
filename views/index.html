@@ -33,10 +33,13 @@
           <h1>Let's Talk About MIDI</h1>
           <h2>Ruth John</h2>
         </section>
+        <section data-background="public/media/oo.gif">
+          <h2>Warnings!</h2>
+        </section>
         <section>
           <h2>Hello, my name is Ruth</h2>
           <h3 class="fragment fade-in">@rumyra</h3>
-          <h3 class="fragment fade-in">Here to talk about MIDI & Audio</h3>
+          <h3 class="fragment fade-in">MIDI</h3>
           <aside class="notes">
             <p>Hi my names Ruth - I’m from the UK. I’m from a web development background, I currently work in research and development. You can find me on the internets as @rumyra</p>
             <p>I came here today to talk to you about MIDI. It seems a strange topic, but one of the reasons I wanted to come and talk about it is to address a common misconception about MIDI, not just within the realms as what we do as developers but also in the wider world.</p>
@@ -137,6 +140,10 @@
           </aside>
         </section>
 
+        <section data-background="public/media/noteThrow.gif">
+          <h2 style="color:white; text-shadow:0px 0px 2px black;">Let me show you</h2>
+        </section>
+
         <section>
           <h2>You will need</h2>
           <ol>
@@ -195,7 +202,7 @@ function onMIDISuccess(midiControl) {
 
         
 
-        <section>
+        <section data-background="public/media/awesome.gif">
           <h2>What about sound?</h2>
           <!-- <p class="fragment fade-in">Mode messages: modulation, volume, panning, sustain, all sounds off, all notes, off, reset controllers.</p>
           <p class="fragment fade-in">Voice Bank</p>
@@ -224,7 +231,7 @@ var oscillator = audioAPI.createOscillator();
 // grab from audio or video element
 var mediaSource = audioAPI.createMediaElementSource(element);
 
-// 'The Jake Method' take it from a stream source
+// take it from a stream source
 var streamSource = audioAPI.createMediaStreamSource(stream);
 
 // request file & load into buffer
@@ -327,6 +334,8 @@ class Note {
           </aside>
         </section>
 
+        <section data-background="public/media/rubHands.gif"></section>
+
         <section>
           <h2>Machine Control Spec</h2>
           <blockquote>MIDI systems to communicate with and control … audio recording and production systems</blockquote>
@@ -338,14 +347,15 @@ class Note {
         <section>
           <h2>MediaRecorder API</h2>
           <p>Chrome 49 stable and Firefox 25+</p>
+          <p><a href="twitter.com/supersole">@supersole</a></p>
           <aside class="notes">
             <p>We’ve just seen the MediaRecording API come into Chrome 49 stable and Firefox 25+. Thankfully I don’t need to go into it in detail  - I don’t have enough time. Soledad - supersede - is talking about this. We have a Web API to cover this, it can be separated out from the Web MIDI spec.</p>
             <p>The Web MIDI API is design as such so it is kept low level and not in anyway complicated - there’s really good reasons for this. There’s a billion bits of MIDI hardware out there, to start adding more ‘features’ could complicate matters - at the moment, you can plug in anything midi enabled and although you might start receiving different values, you’re good to go.</p>
           </aside>
         </section>
 
-        <section>
-          <h2>Timeout</h2>
+        <section data-background="public/media/bored.gif">
+          <h2 style="color:white;">Timeout</h2>
           <aside class="notes">
             <p>Let's have a little spec break and take a look at some MIDI enabled hardware shall we?</p>
           </aside>
@@ -370,7 +380,7 @@ class Note {
           </aside>
         </section>
 
-        <section data-background="public/more.gif"></section>
+        <section data-background="public/media/stareSmile.gif"></section>
 
         <section>
           <h2>MIDI Show Control Spec</h2>
@@ -470,7 +480,8 @@ class Note {
           <h2>Web Bluetooth API</h2>
           <p class="fragment fade-in">Under a flag in Chrome</p>
           <p class="fragment fade-in"><code>navigator.bluetooth.requestDevice(options)</code></p>
-          <p class="fragment fade-in">Find out more: <a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web">developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web</a></p>
+          <p class="fragment fade-in">Find out more: See Dan's Talk</p>
+          <!--<p class="fragment fade-in">Find out more: <a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web">developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web</a></p>-->
           <aside class="notes">
           </aside>
         </section>
@@ -541,13 +552,8 @@ class Note {
         </section>
 
         <section>
-          <h2>The MIDI world is in your WEB browser...</h2>
-          <h3>Javascript is Everywhere!</h3>
-          <div class="fragment fade-in">
-            <p>Thanks!</p>
-            <p>@rumyra</p>
-            <p>I'll tweet the slides</p>
-          </div>
+          <h2>Thanks! @Rumyra</h2>
+          
           <aside class="notes">
             <p>We're so comfortable now with our whole dev stack being JS - but it's not just a software environment anymore.</p>
             <p>Tim and I will be around for the next two days with all of our equipment VJing so come and say hello, come and play with our MIDI hardware - can I say that. It’s been an absolute pleasure I really hope I have inspired you today. Thank you.</p>
