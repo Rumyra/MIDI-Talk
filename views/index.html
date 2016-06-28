@@ -17,7 +17,7 @@
 
   <!--CHANGE THIS TO USE NPM-->
   <link rel="stylesheet" href="reveal/css/reveal.css">
-  <link rel="stylesheet" href="reveal/css/theme/sky.css" id="theme">
+  <link rel="stylesheet" href="reveal/css/theme/rumyra.css" id="theme">
   <link rel="stylesheet" href="reveal/lib/css/zenburn.css" id="theme">
   <script src="reveal/js/reveal.js"></script>
 
@@ -29,14 +29,15 @@
   <div class="reveal">
     <div class="slides">
       <section>
-        <section>
+        <section class="alternate">
           <h1>Let's Talk About MIDI</h1>
           <h2>Ruth John</h2>
         </section>
         <section>
-          <h2>Hello, my name is Ruth</h2>
-          <h3 class="fragment fade-in">@rumyra</h3>
-          <h3 class="fragment fade-in">Here to talk about MIDI & Audio</h3>
+          <h2>Ruth John</h2>
+          <h3>Web Technologist</h3>
+          <h3>Google Developer Expert</h3>
+          <h3>@rumyra</h3>
           <aside class="notes">
             <p>Hi my names Ruth - I’m from the UK. I’m from a web development background, I currently work in research and development. You can find me on the internets as @rumyra</p>
             <p>I came here today to talk to you about MIDI. It seems a strange topic, but one of the reasons I wanted to come and talk about it is to address a common misconception about MIDI, not just within the realms as what we do as developers but also in the wider world.</p>
@@ -51,85 +52,65 @@
           </aside>
         </section>
         <section>
-          <h2>Music Instrument Digital Interface</h2>
+          <h2>Music Instrument<br />Digital Interface</h2>
           <aside class="notes">
             <p>Let me elaborate. MIDI is intrinsically linked to music. MIDI itself stands for Music Instrument Digital Interface.</p>
           </aside>
         </section>
         <section>
-          <h2>Music Instrument <span class="faded">Digital Interface</span></h2>
+          <h2>Music Instrument<br /><span class="faded">Digital Interface</span></h2>
           <aside class="notes">
             <p> See that Music Instrument. So you can absolutely be forgiven for thinking its the sounds...</p>
           </aside>
         </section>
         <section>
-          <h2><span class="faded">Music Instrument</span> Digital Interface</h2>
+          <h2><span class="faded">Music Instrument</span><br /> Digital Interface</h2>
           <aside class="notes">
             <p>But the key, the bit that’s really MIDI and really interesting is this bit “Digital Interface”. MIDI is a digital interface, at it’s basic it’s a data protocol for MIDI enabled hardware & software to be compatible with other MIDI enabled hardware & software.</p>
           </aside>
         </section>
 
-        <section>
-          <h2>Original MIDI Specs (1983)</h2>
-          <table>
-            <tr><td><img class="plain" src="public/media/GMIDI.png" /></td>
-              <td class="faded"><img class="plain" src="public/media/MIDIicon.png" /></td>
-            <td class="faded"><img class="plain" src="public/media/din.png" /></td></tr>
-          </table>
-          <p><a href="https://www.midi.org/">midi.org</a></p>
+        <section class="alternate">
+          <h2>MIDI Specs...</h2>
+          <h3>Originated 1983</h3>
           <aside class="notes">
             <p>The first MIDI specs - because it is a bunch of technical specifications, came about in 1983, after a bunch of industry experts, we’re talking music hardware manufacturers, other renowned industry experts, got together after the rise of analogue and digital instruments in the 70’s - we’re talking synthesisers and such - and decided it would be good to have a common standard for all these instruments to talk to each other. And be bought into recording studios etc and be able to be plugged into recording equipment and be able to be recorded etc…</p>
             <p>Especially with the digital equipment you can understand the frustrations with this not being possible. So they formed the MMA - MIDI Manufacturers Association - the first MIDI specs involved A General MIDI Spec - which now has a lot more elements, more about this is a sec. A non-profit group of industry specialists with a 3 letter acronym - where have we heard that before (w3c)</p>
           </aside>
         </section>
 
-        <section>
-          <h2>Original MIDI Specs (1983)</h2>
-          <table>
-            <tr><td class="faded"><img class="plain" src="public/media/GMIDI.png" /></td>
-              <td><img class="plain" src="public/media/MIDIicon.png" /></td>
-            <td class="faded"><img class="plain" src="public/media/din.png" /></td></tr>
-          </table>
-          <p><a href="https://www.midi.org/">midi.org</a></p>
+        <section data-background="public/media/techSpec.jpg">
           <aside class="notes">
             <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
           </aside>
         </section>
 
-        <section>
-          <h2>Original MIDI Specs (1983)</h2>
-          <table>
-            <tr><td class="faded"><img class="plain" src="public/media/GMIDI.png" /></td>
-              <td class="faded"><img class="plain" src="public/media/MIDIicon.png" /></td>
-            <td><img class="plain" src="public/media/din.png" /></td></tr>
-          </table>
-          <p><a href="https://www.midi.org/">midi.org</a></p>
+        <section data-background="public/media/fileFormats.jpg">
+          <aside class="notes">
+            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+          </aside>
+        </section>
+
+        <section data-background="public/media/connector.jpg">
           <aside class="notes">
             <p>And a connector specification. The DIN connector. Which at the time was important, but now is very much being superseeded by USB, serial, and we’ll see later wireless is coming in with Bluetooth.</p>
             <p>I’m not going to go into every single spec, we simply don’t have enough time and also there’s parts that are more relevant to us as developers which you will see. If you want to find out more all the spec docs are on www.midi.org.</p>
           </aside>
         </section>
 
-        <section>
-          <h2>Original MIDI Specs (1983)</h2>
-          <table>
-            <tr><td><img class="plain" src="public/media/GMIDI.png" /></td>
-              <td class="faded"><img class="plain" src="public/media/MIDIicon.png" /></td>
-            <td class="faded"><img class="plain" src="public/media/din.png" /></td></tr>
-          </table>
+        <section data-background="public/media/today.png" class="back-img">
+          <h2>...Present Day</h2>
           <p><a href="https://www.midi.org/">midi.org</a></p>
           <aside class="notes">
-            <p>So I’m going to start with General MIDI - 1 was updated to 2 in the 90s. It’s basically just the jump from html4 to html5 - there was better hardware, better software, they added more to the spec. There is also a GM Light spec for ‘low powered mobile devices’ (pic of old handset) I’m pretty sure the phones in your hands can run GM2 we’re good :)</p>
+            <p>Today there's more - I’m not going to go into every single spec, we simply don’t have enough time and also there’s parts that are more relevant to us as developers which you will see. If you want to find out more all the spec docs are on www.midi.org.</p>
           </aside>
         </section>
+
         
-        <section>
-          <h2>Core of MIDI: Messages</h2>
+        <section class="alternate">
+          <h2>Messages</h2>
 
-          <p class="fragment fade-in">General MIDI: Channel Messages & System Messages</p>
-
-          <!--<p class="fragment fade-in">Channel messages: Voice messages & Mode messages</p>-->
-          <p class="fragment fade-in">Detail? Let me show you.</p>
+          <h3 class="fragment fade-in">General MIDI: Channel Messages & System Messages</h3>
           <aside class="notes">
             <p>Core of MIDI is messages - data messages, this digital protocal. The GM spec comes can be grouped into two distinct parts. Channels and system level.</p>
             <p>There are two types of channel messages - voice and mode. Voice messages are sent over voice channels and mode messages are sent over an instruments basic channel.</p>
@@ -138,12 +119,8 @@
         </section>
 
         <section>
-          <h2>You will need</h2>
-          <ol>
-            <li>A device (Phone)</li>
-            <li>A modern browser</li>
-            <li><a href="/audience">midi-talk.herokuapp.com/audience</a></li>
-          </ol>
+          <h2>Let me show you</h2>
+          <h3><a href="/audience">midi-talk.herokuapp.com/audience</a></h3>
           <aside class="notes">
             <p>The easiest way for me to explain this to you is for me to illustrate this to you. Let’s take probably one of the most common MIDI enabled instruments - a keyboard.</p>
           </aside>
@@ -151,7 +128,7 @@
 
         <section>
           <h2>Demo</h2>
-          <p><a href="/audience">midi-talk.herokuapp.com/audience</a></p>
+          <h3><a href="/audience">midi-talk.herokuapp.com/audience</a></h3>
           <p data-height="524" data-theme-id="1345" data-slug-hash="jWdWdp" data-default-tab="result" data-user="Rumyra" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/Rumyra/pen/jWdWdp/">Music keyboard</a> by Rumyra (<a href="http://codepen.io/Rumyra">@Rumyra</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
           <aside class="notes">
@@ -174,7 +151,6 @@ function onMIDISuccess(midiControl) {
   }
 }
           </code></pre>
-          <p>So far only Chrome & Opera</p>
           <aside class="notes">
             <p>You make sure it’s avail, listen for attached device, when plugged in you can receive these afore mentioned messages. All I’m doing here is logging those messages - you can do whatever you want with them. Notice the sysex false - this is related to system messages and I will get back to that in a moment.</p>
             <p>Now there’s a window of opportunity - there’s plenty of stuff we can start coding with that!</p>
@@ -184,18 +160,30 @@ function onMIDISuccess(midiControl) {
 
         <section>
           <h2>[144, 60, 100]</h2>
-          <p class="fragment fade-in">[Message type (Note on) & Channel, Note, Velocity/Pressure]</p>
           <h2 class="fragment fade-in">[128, 60, 64]</h2>
-          <p class="fragment fade-in">[Message type (Note off), Note, Velocity/pressure]</p>
           <aside class="notes">
             <p>the first byte 144 is the message type and channel, 144 is 90 in hex and the 9 says it's a 'Note on' message and the 0 is the channel number. A 'Note on' message has two data bytes, the first is the 'key number' which I'm guessing is the note number, so 60 would be C the second is 'note on velocity' and this has a value of 100, - 0-127 (I'm guessing this means the rate at which the note is turned on)</p>
 
           </aside>
         </section>
 
-        
-
         <section>
+          <h2>Support</h2>
+          <table>
+            <tr>
+              <td class="faded"><img src="public/media/ponies/safari.png" class="plain" /></td>
+              <td><img src="public/media/ponies/chrome.png" class="plain" /></td>
+              <td class="faded"><img src="public/media/ponies/firefox.png" class="plain" /></td>
+              <td class="faded"><img src="public/media/ponies/edge.png" class="plain" /></td>
+              <td><img src="public/media/ponies/opera.png" class="plain" /></td>
+            </tr>
+          </table>
+          <aside class="notes">
+            <p>Support isn't great only chromum and thus therefore opera atm. However you can turn your android device into a MIDI controller - be interesting to see how that turns out.</p>
+          </aside>
+        </section>
+
+        <section class="alternate">
           <h2>What about sound?</h2>
           <!-- <p class="fragment fade-in">Mode messages: modulation, volume, panning, sustain, all sounds off, all notes, off, reset controllers.</p>
           <p class="fragment fade-in">Voice Bank</p>
@@ -207,8 +195,7 @@ function onMIDISuccess(midiControl) {
 
         <section>
           <h2>Web Audio API</h2>
-          <p class="fragment fade-in">The classic companion to the Web MIDI API</p>
-          <p class="fragment fade-in">MIDI data -> Play sounds OR Alter sounds</p>
+          <h3 class="fragment fade-in">MIDI data -> Play sounds OR Alter sounds</h3>
           <aside class="notes">
             <p>So the web audio API - the classic companion to the Web MIDI API. You have an instrument or controller and you set up the Web Audio API to play sounds when certain data is received.</p>
             <p>I'm sure we've all seen the web audio API - here I'm using a sample</p>
@@ -224,7 +211,7 @@ var oscillator = audioAPI.createOscillator();
 // grab from audio or video element
 var mediaSource = audioAPI.createMediaElementSource(element);
 
-// 'The Jake Method' take it from a stream source
+// take it from a stream source
 var streamSource = audioAPI.createMediaStreamSource(stream);
 
 // request file & load into buffer
@@ -232,7 +219,6 @@ var bufferSource = audioAPI.createBufferSource();
 var request = new XMLHttpRequest();
 ...
           </code></pre>
-          <p class="fragment fade-in">Keyboards!</p>
           <aside class="notes">
             <p>Here I'm using a class created by Boris Smus on HTML5 rocks - audio buffer class.</p>
           </aside>
@@ -249,6 +235,7 @@ var request = new XMLHttpRequest();
 
         <section data-state="playVid">
           <video src="public/media/akai.mp4" controls id="akai"></video>
+          <p><a href="http://codepen.io/davemackintosh/pen/XmrqLV?editors=0010">codepen.io/davemackintosh/pen/XmrqLV -> Oscillated MIDI triggered sounds - Dave Mackintosh</a></p>
           <aside class="notes">
             <p>So what I've done with this, is allocate occilated sounds, created with the audio api, to the synth pads on the controller. So I press them and I make sounds. They're pressure sensitive, so the harder I press the louder the sounds.</p>
             <p>I've also allocated some distortion to the dials, so when I play the sounds I can alter them</p>
@@ -257,39 +244,8 @@ var request = new XMLHttpRequest();
           </aside>
         </section>
 
-        <section>
-          <pre><code data-trim>const AUDIO_CONTEXT = new (window.AudioContext || window.webkitAudioContext)()
-class Note {
-  constructor(note, velocity) {
-    this.NOTE = note * 10
-    this.VELOCITY = velocity / 127
-    
-    this.OSC  = AUDIO_CONTEXT.createOscillator()
-    this.GAIN = AUDIO_CONTEXT.createGain()
-    
-    this.OSC.connect(this.GAIN)
-    this.GAIN.connect(AUDIO_CONTEXT.destination)
-    
-    console.log('NOTE %s @ %s', this.NOTE, this.VELOCITY)
-    
-    this.GAIN.gain.value = this.VELOCITY
-    
-    this.OSC.type = 'square'
-    this.OSC.frequency.value = this.NOTE
-  }
-          </code></pre>
-          <p><a href="http://codepen.io/davemackintosh/pen/XmrqLV?editors=0010">codepen.io/davemackintosh/pen/XmrqLV -> Oscillated MIDI triggered sounds - Dave Mackintosh</a></p>
-          <aside class="notes">
-            <p>Here I'm pre loading all the piano samples and holding them in the buffer array, ready to be played when I receive the matched MIDI data</p>
-            <p>We could of course generate sounds with the ocillator node, we could add filters when dials are turned on MIDI controllers.</p>
-            <p>There's a whole range of audio/MIDI stuff - the best examples are 
-          </aside>
-        </section>
-
-        <section>
-          <h2>Timing Is Important</h2>
-          <p>MIDI Clock</p>
-          <p>play, pause, record</p>
+        <section class="alternate">
+          <h2>MIDI Clock</h2>
           <aside class="notes">
             <p>Timing is important right - I mean this is music...</p>
             <p>System Common Messages and System Real-time Messages deal with song selection, song position, the MIDI clock, start, stop, continue messages.</p>
@@ -298,8 +254,8 @@ class Note {
         </section>
 
         <section>
-          <h2>Let Me Illustrate</h2>
-          <p>Keyboards at the ready!</p>
+          <h2>Keyboards!</h2>
+          <h3><a href="/audience">midi-talk.herokuapp.com/audience</a></h3>
           <aside class="notes">
             <p>Let me illustrate something to you. We’ve seen data as collected when we use MIDI, but we can also send data - so I can send data to all your MIDI devices.</p>
             <p>Remember our voice bank - number 391 telephone.</p>
@@ -309,26 +265,32 @@ class Note {
 
         <section data-state="play-ringtone"><h2>Ring!</h2></section>
 
-        <section>
-          <h2>Timing Model Object API (Draft)</h2>
-          <img class="plain" src="public/media/timing.png" />
-          <p><a href="http://webtiming.github.io/timingobject/">webtiming.github.io/timingobject/</a></p>
+        <section data-background="public/media/timing.png">
           <aside class="notes">
             <p>So I read something a draft spec from W3C the other day. The Timing Model Object API.</p>
           </aside>
         </section>
 
         <section>
+          <h2>Timing Model Object API</h2>
           <blockquote>provide a unifying API for timed operation and temporal control</blockquote>
           <blockquote>encapsulate complexity of distributed time synchronization</blockquote>
+          <p><a href="http://webtiming.github.io/timingobject/">webtiming.github.io/timingobject/</a></p>
           <aside class="notes">
             <p>‘QUOTE’</p>
             <p>This doesn’t just cover timing in MIDI, this covers timing within the browser ecosystem. Audio, video, animation, real time stuff with web sockets we’re doing now.</p>
           </aside>
         </section>
 
+        <section class="alternate">
+          <h2>Recording</h2>
+          <aside class="notes">
+            <p>Timing is important right - I mean this is music...</p>
+          </aside>
+        </section>
+
         <section>
-          <h2>Machine Control Spec</h2>
+          <h2>MIDI Machine Control</h2>
           <blockquote>MIDI systems to communicate with and control … audio recording and production systems</blockquote>
           <aside class="notes">
             <p>Something else that’s pertinent in MIDI (as well as timing) is this recording business. There are lots of other specifications in MIDI. One of them is the Machine Control Spec. This came about to allow “MIDI systems to communicate with and control … audio recording and production systems”. Messages protocols include simple play, pause, stop, record to more complex time code based recorders and sequencers.</p>
@@ -337,7 +299,7 @@ class Note {
 
         <section>
           <h2>MediaRecorder API</h2>
-          <p>Chrome 49 stable and Firefox 25+</p>
+          <pre><code data-trim>var recorder = new MediaRecorder(stream);</code></pre>
           <aside class="notes">
             <p>We’ve just seen the MediaRecording API come into Chrome 49 stable and Firefox 25+. Thankfully I don’t need to go into it in detail  - I don’t have enough time. Soledad - supersede - is talking about this. We have a Web API to cover this, it can be separated out from the Web MIDI spec.</p>
             <p>The Web MIDI API is design as such so it is kept low level and not in anyway complicated - there’s really good reasons for this. There’s a billion bits of MIDI hardware out there, to start adding more ‘features’ could complicate matters - at the moment, you can plug in anything midi enabled and although you might start receiving different values, you’re good to go.</p>
@@ -345,13 +307,29 @@ class Note {
         </section>
 
         <section>
+          <h2>Support</h2>
+          <table>
+            <tr>
+              <td class="faded"><img src="public/media/ponies/safari.png" class="plain" /></td>
+              <td><img src="public/media/ponies/chrome.png" class="plain" /></td>
+              <td><img src="public/media/ponies/firefox.png" class="plain" /></td>
+              <td class="faded"><img src="public/media/ponies/edge.png" class="plain" /></td>
+              <td><img src="public/media/ponies/opera.png" class="plain" /></td>
+            </tr>
+          </table>
+          <aside class="notes">
+            <p>Support isn't great only chromum and thus therefore opera atm. However you can turn your android device into a MIDI controller - be interesting to see how that turns out.</p>
+          </aside>
+        </section>
+
+        <section class="alternate">
           <h2>Timeout</h2>
           <aside class="notes">
             <p>Let's have a little spec break and take a look at some MIDI enabled hardware shall we?</p>
           </aside>
         </section>
 
-        <section data-background="public/media/midiConts.jpg">
+        <!-- <section data-background="public/media/midiConts.jpg">
           <aside class="notes">
             <p>These are just some examples of MIDI instruments.</p>
             <p>Top: Keyboard, synth, drum kit - also drum machines. You can also get things like guitar pedals, clarinet/sax type thing.</p>
@@ -359,18 +337,93 @@ class Note {
             <p>Bottom: Examples of basic controller. Launchpad (one first USB) - next two similar price AKAI LPD8 & Korg NanoPad2. Last icon iDJ</p>
             <p>You can see why there's the MMA, making sure all the different manufacturers stay in line with the protocol</p>
           </aside>
+        </section> -->
+
+        <section data-background="public/media/keyboard.jpg">
+          <aside class="notes">
+            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+          </aside>
+        </section>
+
+        <section data-background="public/media/digitalDrum.jpg">
+          <aside class="notes">
+            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+          </aside>
+        </section>
+
+        <section data-background="public/media/synth.png">
+          <aside class="notes">
+            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+          </aside>
+        </section>
+
+        <section data-background="public/media/launchpad.jpg">
+          <aside class="notes">
+            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+          </aside>
+        </section>
+
+        <section data-background="public/media/akainano.jpg">
+          <aside class="notes">
+            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+          </aside>
+        </section>
+
+        <section data-background="public/media/icon.jpg">
+          <aside class="notes">
+            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+          </aside>
         </section>
 
         <section>
           <h2>Affordable Hardware</h2>
-          <p></p>
           <aside class="notes">
             <p>So it's these controllers that have really got attention. We're talking affordable hardware, accessible easily from the browser with a really nice data protocol - which we've already seen</p>
             <p>So what else can we do?</p>
           </aside>
         </section>
 
-        <section data-background="public/more.gif"></section>
+        <section class="alternate">
+          <h2>Connectors</h2>
+          <aside class="notes">
+            <p>As we're talking about hardware we may as well move into connector specification. We've already seen din and most of the more affordable controllers you saw we're usb</p>
+          </aside>
+        </section>
+
+        <section data-state="back-to-talk">
+          <h2>MIDI Transport Specifications</h2>
+          <h3 class="fragment fade-in">Orig: 5-pin din cable</h3>
+          <h3 class="fragment fade-in">Today: USB & ...</h3>
+          <aside class="notes">
+            <p>Which brings us back to connector spec which I mention right at the top of the talk</p>
+            <p>This is something the web uniquely gives us - the MIDI transport spec was DIN cables originially. It has been expended to cover other transport mechanisms - USB being the most common.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Bluetooth LE MIDI Spec</h2>
+          <aside class="notes">
+            <p>There's also the Bluetooth Low Enegery (BLE) spec - which is for encoding and decoding midi data over ble. There's a lot of MIDI enabled hardware coming out right now which is bluetooth enabled</p>
+            <p>Which is great because we have...</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Web Bluetooth API</h2>
+          <h3 class="fragment fade-in">Under a flag in Chrome</h3>
+          <pre class="fragment fade-in"><code data-trim>navigator.bluetooth.requestDevice(options)</code></pre>
+          <p class="fragment fade-in"><a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web">developers.google.com/web</a></p>
+          <aside class="notes">
+          </aside>
+        </section>
+
+
+        <section class="alternate">
+          <h2>Beyond Sound & Hardware</h2>
+          <aside class="notes">
+            <p>As we're talking about hardware we may as well move into connector specification. We've already seen din and most of the more affordable controllers you saw we're usb</p>
+          </aside>
+        </section>
 
         <section>
           <h2>MIDI Show Control Spec</h2>
@@ -396,7 +449,7 @@ class Note {
 
         <section>
           <h2>So let's do that!</h2>
-          <p>Keyboards at the ready!</p>
+          <h3>Keyboards at the ready!</h3>
           <aside class="notes">
             <p>So I'm going to change your MIDI device</p>
             <p>Keyboards are great but I really love the idea of crowdsourcing a realy big MIDI controller, by everyone having a small part of it.</p>
@@ -405,7 +458,7 @@ class Note {
           </aside>
         </section>
 
-        <section data-state="build-wall">
+<!--        <section data-state="build-wall">
           <h2>Mini Launchpad</h2>
           <aside class="notes">
             <p>So I'm going to change your MIDI device</p>
@@ -445,46 +498,19 @@ class Note {
           <aside class="notes">
             <p>Animation API - covers css transistions animations and svg. It comes with both the animatable keyframes part of css animations but also a timing layer. Much more control over event snad timelines - something css animations lacked.</p>
           </aside>
-        </section>
+        </section>-->
 
-        <section data-state="back-to-talk">
-          <h2>MIDI Transport Specifications</h2>
-          <p class="fragment fade-in">Originally 5-pin din cable</p>
-          <p class="fragment fade-in">Today many different transports: USB</p>
-          <aside class="notes">
-            <p>Which brings us back to connector spec which I mention right at the top of the talk</p>
-            <p>This is something the web uniquely gives us - the MIDI transport spec was DIN cables originially. It has been expended to cover other transport mechanisms - USB being the most common.</p>
-          </aside>
-        </section>
+        
 
-        <section>
-          <h2>Bluetooth LE MIDI Spec</h2>
-          <p class="fragment fade-in">Encoding and decoding MIDI data over BLE</p>
-          <aside class="notes">
-            <p>There's also the Bluetooth Low Enegery (BLE) spec - which is for encoding and decoding midi data over ble. There's a lot of MIDI enabled hardware coming out right now which is bluetooth enabled</p>
-            <p>Which is great because we have...</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Web Bluetooth API</h2>
-          <p class="fragment fade-in">Under a flag in Chrome</p>
-          <p class="fragment fade-in"><code>navigator.bluetooth.requestDevice(options)</code></p>
-          <p class="fragment fade-in">Find out more: <a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web">developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web</a></p>
-          <aside class="notes">
-          </aside>
-        </section>
-
-        <section>
-          <h2>What possible uses?</h2>
+        <section class="alternate">
+          <h2>Uses?</h2>
           <aside class="notes">
             <p>What possible uses could you have for these things I've just covered. I mean we build software.</p>
           </aside>
         </section>
 
-        <section>
+        <section data-background="public/media/madeons.png" class="back-img">
           <h2>Madeon's Adventure Machine</h2>
-          <img class="plain" src="public/media/madeons.png" />
           <p><a href="http://www.madeon.fr/adventuremachine/">madeon.fr/adventuremachine/</a></p>
           <aside class="notes">
             <p>This is a website some of my dear friends at we make awesome sh* built ofr musician Madeon. It's a sort of online synthesiser/sampler. It works without a MIDI controller, but if you have a launchpad, you can plug it in and use it it's compatible - and a lot of fun.</p>
@@ -493,40 +519,40 @@ class Note {
 
         <section>
           <h2>Navigating Web Pages</h2>
-          <p class="fragment fade-in">Accessibility</p>
+          <h3 class="fragment fade-in">Accessibility</h3>
           <aside class="notes">
             <p>What about simply navigating web pages - either as a fun way, or a better way. Keyboards are great, but we never questioned them.</p>
           </aside>
         </section>
 
-        <section data-background="public/media/trex.png">
-          <h2 style="color:white;">Dinosaurs</h2>
-          <p><a style="color:white;" href="http://www.blackgangchine.com/">blackgangchine.com/</a></p>
+        <section data-background="public/media/trex.png"  class="back-img">
+          <h2>Dinosaurs</h2>
+          <p><a href="http://www.blackgangchine.com/">blackgangchine.com/</a></p>
           <aside class="notes">
             <p>I did a short version of this talk at a local evening event a couple of months ago, and another friend was talking before me about how he had helped on a project hacking big mechanical dinosaurs. Sounds crazy right.</p>
             <p>We have this island of the south coast of England and there’s a park there, where the owner has just shipped in these huge dinosaurs. They all have mechanical skeletons which are control by raspberry pis. These in turn can be programmed with javascript. And so we were thinking of ways for these huge dinosaurs to be more crowd interactive. Having a motion or infrared sensor so they turn when they detect walking past…</p>
           </aside>
         </section>
 
-        <section data-background="public/media/smalldino.png">
-          <h2 style="color:white;">Dinosaurs</h2>
-          <p><a style="color:white;" href="http://www.blackgangchine.com/">blackgangchine.com/</a></p>
+        <section data-background="public/media/smalldino.png"  class="back-img">
+          <h2>Dinosaurs</h2>
+          <p><a href="http://www.blackgangchine.com/">blackgangchine.com/</a></p>
           <aside class="notes">
             <p>But what if the public could control the dinosaurs?</p>
             <p>Hook up some cheap MIDI controllers and let the kids and big kids come and move the smaller dinos with them</p>
           </aside>
         </section>
 
-        <section data-background="public/media/drumpad.png">
-          <h2 style="color:purple;">Control Your Home</h2>
+        <section data-background="public/media/drumpad.png"  class="back-img">
+          <h2>Control Your Home</h2>
           <aside class="notes">
             <p>Out homes are getting more and more connected these days - lights, themostats. Imagine one of these (drum pads) on the wall controlling all those things in your house.</p>
           </aside>
         </section>
 
-        <section data-background="public/media/me.jpg">
-          <h2 style="color:white;">Take it to the streets!</h2>
-          <p><a style="color:white" href="https://24ways.org/2015/bringing-your-code-to-the-streets">24ways.org/2015/bringing-your-code-to-the-streets</a></p>
+        <section data-background="public/media/me.jpg" class="back-img">
+          <h2>Take it to the streets!</h2>
+          <p><a href="https://24ways.org/2015/bringing-your-code-to-the-streets">24ways.org/2015/bringing-your-code-to-the-streets</a></p>
           <aside class="notes">
             <p>You can build a portable VJ kit and carry around the streets of your city, with a laptop, projector and MIDI controller, mixing visuals via your browser.</p>
             <p>I did this - this is me at christmas, walking around the streets of my city, projecting moving visuals to music - with an attached tray. Read all about it on 24ways.org</p>
@@ -534,20 +560,15 @@ class Note {
         </section>
 
         <section>
-          <h2>Talking about MIDI?</h2>
+          <h2>MIDI?</h2>
           <aside class="notes">
             <p>I was talking about MIDI and I hope I taught you something about MIDI - but secretly I was talking to you about specifications. How they’re important - how a something that’s been around for 30 years is still going strong and is still relevant - much like what we do with our web work. Just get a bunch of enthusiastic, clever, people together and you *will* create something that evolves to start including things you would never think of. Maing it all the more substantial and long lasting.</p>
           </aside>
         </section>
 
-        <section>
-          <h2>The MIDI world is in your WEB browser...</h2>
-          <h3>Javascript is Everywhere!</h3>
-          <div class="fragment fade-in">
-            <p>Thanks!</p>
-            <p>@rumyra</p>
-            <p>I'll tweet the slides</p>
-          </div>
+        <section class="alternate">
+          <h2>@rumyra</h2>
+          <h3>I'll tweet the slides</h3>
           <aside class="notes">
             <p>We're so comfortable now with our whole dev stack being JS - but it's not just a software environment anymore.</p>
             <p>Tim and I will be around for the next two days with all of our equipment VJing so come and say hello, come and play with our MIDI hardware - can I say that. It’s been an absolute pleasure I really hope I have inspired you today. Thank you.</p>
@@ -638,17 +659,19 @@ Reveal.initialize({
 var vjDiv = document.getElementById('vjing'),
     vjScreen = document.getElementById('screen');
 // send right view to audience
-Reveal.addEventListener( 'play-keyboard', function() {
-    channel.trigger(
-      'client-play_keyboard',
-      {
-        "sendSome": 'data'
-      }
-    );
-  }, false);
-Reveal.addEventListener( 'playVid', function() {
+// Reveal.addEventListener( 'play-keyboard', function() {
+//     channel.trigger(
+//       'client-play_keyboard',
+//       {
+//         "sendSome": 'data'
+//       }
+//     );
+//   }, false);
+window.addEventListener('keypress', function(e) {
+  if (e.keyCode === 86) {
     document.getElementById('akai').play();
-  }, false );
+  }
+}, false);
 
 Reveal.addEventListener( 'play-ringtone', function() {
     channel.trigger(
@@ -659,14 +682,14 @@ Reveal.addEventListener( 'play-ringtone', function() {
     );
   }, false);
 
-Reveal.addEventListener( 'show-launchpad', function() {
-    channel.trigger(
-      'client-show_launchpad',
-      {
-        "sendSome": 'data'
-      }
-    );
-  }, false);
+// Reveal.addEventListener( 'show-launchpad', function() {
+//     channel.trigger(
+//       'client-show_launchpad',
+//       {
+//         "sendSome": 'data'
+//       }
+//     );
+//   }, false);
 Reveal.addEventListener( 'build-wall', function() {
     buildLaunchpadWall();
   }, false );
@@ -721,13 +744,27 @@ var playGuilt = function playGuilt() {
   simonSoundEl.play();
   flashPads();
 }
-playButton.onclick = function() {
+// playButton.onclick = function() {
+//   if (simonSoundEl.paused) {
+//     playGuilt();
+//   } else {
+//     simonSoundEl.pause();
+//   }
+// }
+
+function playPause() {
   if (simonSoundEl.paused) {
     playGuilt();
   } else {
     simonSoundEl.pause();
   }
 }
+window.addEventListener('keypress', function(e) {
+  if (e.keyCode === 65) {
+    playPause();
+  }
+}, false);
+
 var flashPads = function flashPads() {
   requestAnimationFrame(flashPads);
   //constantly getting feedback from data
