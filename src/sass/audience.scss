@@ -13,13 +13,13 @@ $backgroundColor: $darkGrey;
   font-family: 'Montserrat';
   font-weight: normal;
   font-style: normal;
-  src: url('fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+  src: url('../fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Montserrat';
   font-weight: bold;
   font-style: normal;
-  src: url('fonts/Montserrat/Montserrat-Bold.ttf') format('truetype');
+  src: url('../fonts/Montserrat/Montserrat-Bold.ttf') format('truetype');
 }
 
 body {

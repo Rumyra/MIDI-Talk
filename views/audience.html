@@ -15,13 +15,13 @@
   <meta name="dcterms.rightsHolder" content="Ruth John for Rumyra Ltd, United Kingdom, 2015">
   <title>Let's talk about MIDI!</title>
 
-  <link href="public/css/audience.css" rel="stylesheet" type="text/css">
+  <link href="/public/css/audience.css" rel="stylesheet" type="text/css">
   <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
   
 </head>
 <body class="audience">
 
-  <audio src="public/media/ring.mp3"></audio>
+  <audio src="/public/media/ring.mp3"></audio>
 
   <div class="page" id="keyboard-data" data-display="show-data">
 
@@ -100,7 +100,7 @@
 
   </div>
 <div id="pusher" data-key="{{PUSH_KEY}}"></div>
-<script src="public/buffer-loader.js"></script>
+<script src="/public/buffer-loader.js"></script>
 <script type="text/javascript">
 //Give the Audio element a stop function
 HTMLAudioElement.prototype.stop = function()
@@ -152,11 +152,13 @@ function sendUser(name, colour) {
   );
 }
 
+
+
 //persist data-state
-// channel.bind('client-play_keyboard', function(data) {
-//   localStorage.setItem('page', '2');
-//   sendUser(username, bkgrndColour);
-// })
+channel.bind('client-get_user', function(data) {
+  // localStorage.setItem('page', '2');
+  sendUser(username, bkgrndColour);
+})
 // channel.bind('client-show_launchpad', function(data) {
 //   localStorage.setItem('page', '3');
 //   launchpad.style.display = 'block';
@@ -215,21 +217,21 @@ function loadSounds() {
   bufferLoader = new BufferLoader(
     context,
     [
-      'public/octave/af3.mp3',
-      'public/octave/a3.mp3',
-      'public/octave/bf3.mp3',
-      'public/octave/b3.mp3',
-      'public/octave/c4.mp3',
-      'public/octave/cs4.mp3',
-      'public/octave/d4.mp3',
-      'public/octave/ef4.mp3',
-      'public/octave/e4.mp3',
-      'public/octave/f4.mp3',
-      'public/octave/fs4.mp3',
-      'public/octave/g4.mp3',
-      'public/octave/af4.mp3',
-      'public/octave/a4.mp3',
-      'public/octave/bf4.mp3'
+      '/public/octave/af3.mp3',
+      '/public/octave/a3.mp3',
+      '/public/octave/bf3.mp3',
+      '/public/octave/b3.mp3',
+      '/public/octave/c4.mp3',
+      '/public/octave/cs4.mp3',
+      '/public/octave/d4.mp3',
+      '/public/octave/ef4.mp3',
+      '/public/octave/e4.mp3',
+      '/public/octave/f4.mp3',
+      '/public/octave/fs4.mp3',
+      '/public/octave/g4.mp3',
+      '/public/octave/af4.mp3',
+      '/public/octave/a4.mp3',
+      '/public/octave/bf4.mp3'
     ],
     finishedLoading
     );
@@ -309,6 +311,9 @@ function sendSquare(userId, squareNo, onOff) {
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
+
+
 </script>
 
 </body>
