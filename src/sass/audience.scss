@@ -9,14 +9,40 @@ $orange: hsla(38,95%,55%,1);
 
 $backgroundColor: $darkGrey;
 
-body {background: $backgroundColor;}
-
-.page {
-  width:300px; /*height:200px;*/
-  padding:19px; margin:0px auto;
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: bold;
+  font-style: normal;
+  src: url('../fonts/Montserrat/Montserrat-Bold.ttf') format('truetype');
 }
 
-#midi-data {
+body {
+  background: $backgroundColor;
+  background-image: -o-linear-gradient(top, $darkGrey 33%, lighten($darkGrey, 20%) 33%, lighten($darkGrey, 20%) 66%, $darkGrey 66%);
+  background-image: -moz-linear-gradient(top, $darkGrey 33%, lighten($darkGrey, 20%) 33%, lighten($darkGrey, 20%) 66%, $darkGrey 66%);
+  background-image: -ms-linear-gradient(top, $darkGrey 33%, lighten($darkGrey, 20%) 33%, lighten($darkGrey, 20%) 66%, $darkGrey 66%);
+  background-image: -webkit-linear-gradient(top, $darkGrey 33%, lighten($darkGrey, 20%) 33%, lighten($darkGrey, 20%) 66%, $darkGrey 66%);
+  background-image: linear-gradient(top, $darkGrey 33%, lighten($darkGrey, 20%) 33%, lighten($darkGrey, 20%) 66%, $darkGrey 66%);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.page {
+  width:302px; height:110vh; min-height: 450px;
+  padding:19px; margin:0px auto;
+  header {
+    padding-bottom: 20px;
+    color: $lightGrey; text-align: right;
+    font-weight: normal;
+  }
+}
+
+.midi-data {
   position:relative; overflow:hidden;
   height: 200px; margin-bottom:30px;
   background:transparentize(white,0.1);
@@ -41,7 +67,7 @@ body {background: $backgroundColor;}
   100% {color:black;}
 }
 
-#octave {
+.octave {
   box-shadow:0px 0px 1px 1px lightgrey;
   overflow:hidden; position:relative;
   i, b {
@@ -64,12 +90,12 @@ body {background: $backgroundColor;}
 }
 
 // launchpad
-#launchpad {display:none;}
 #visual {
   width:48%; margin:0px auto 20px;
   em {
     display: inline-block; width:48%; height:75px;
     box-sizing: border-box; border:1px solid white;
+    border-radius: 40px;
   }
 }
 

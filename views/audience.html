@@ -15,22 +15,55 @@
   <meta name="dcterms.rightsHolder" content="Ruth John for Rumyra Ltd, United Kingdom, 2015">
   <title>Let's talk about MIDI!</title>
 
-  <link href="public/css/audience.css" rel="stylesheet" type="text/css">
+  <link href="/public/css/audience.css" rel="stylesheet" type="text/css">
   <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
   
 </head>
 <body class="audience">
 
-  <audio src="public/media/ring.mp3"></audio>
+  <audio src="/public/media/ring.mp3"></audio>
 
   <div class="page" id="keyboard-data" data-display="show-data">
 
-    <section id="midi-data">
+    <header>
+      <h2>1: showData</h2>
+    </header>
+
+    <section class="midi-data">
       <ul></ul>
     </section>
 
-    <div class="instrument" id="keyboard">
-      <section id="octave">
+    <div class="instrument keyboard">
+      <section class="octave">
+        <b class="key-af" data-note="56">Ab</b>
+        <i class="key-a" data-note="57">A</i>
+        <b class="key-bf" data-note="58">Bb</b>
+        <i class="key-b" data-note="59">B</i>
+        <i class="key-c" data-note="60">C</i>
+        <b class="key-cs" data-note="61">C#</b>
+        <i class="key-d" data-note="62">D</i>
+        <b class="key-ef" data-note="63">Eb</b>
+        <i class="key-e" data-note="64">E</i>
+        <i class="key-f" data-note="65">F</i>
+        <b class="key-fs" data-note="66">F#</b>
+        <i class="key-g" data-note="67">G</i>
+        <b class="key-af" data-note="68">Ab</b><i class="key-a" data-note="69">A</i><b class="key-bf key-last" data-note="70">Bb</b>
+      </section>
+    </div><!--instrument-->
+  </div><!--keyboard-data-->
+
+  <div class="page" id="keyboard-sound" data-display="show-data">
+
+    <header>
+      <h2>2: playSounds</h2>
+    </header>
+
+    <section class="midi-data">
+      <ul></ul>
+    </section>
+
+    <div class="instrument keyboard">
+      <section class="octave">
         <b class="key-af" data-note="56">Ab</b>
         <i class="key-a" data-note="57">A</i>
         <b class="key-bf" data-note="58">Bb</b>
@@ -50,6 +83,10 @@
 
   <div class="page" id="launchpad">
 
+    <header>
+      <h2>3: controlVisuals</h2>
+    </header>
+
     <section id="visual">
       <em></em>
       <em></em>
@@ -63,7 +100,7 @@
 
   </div>
 <div id="pusher" data-key="{{PUSH_KEY}}"></div>
-<script src="public/buffer-loader.js"></script>
+<script src="/public/buffer-loader.js"></script>
 <script type="text/javascript">
 //Give the Audio element a stop function
 HTMLAudioElement.prototype.stop = function()
@@ -115,51 +152,60 @@ function sendUser(name, colour) {
   );
 }
 
+
+
 //persist data-state
-channel.bind('client-play_keyboard', function(data) {
-  localStorage.setItem('page', '2');
+channel.bind('client-get_user', function(data) {
+  // localStorage.setItem('page', '2');
   sendUser(username, bkgrndColour);
 })
-channel.bind('client-show_launchpad', function(data) {
-  localStorage.setItem('page', '3');
-  launchpad.style.display = 'block';
-  keyboardDiv.style.display = 'none';
-})
-if (localStorage.getItem('page') === '2') {
+// channel.bind('client-show_launchpad', function(data) {
+//   localStorage.setItem('page', '3');
+//   launchpad.style.display = 'block';
+//   keyboardDiv.style.display = 'none';
+// })
+// if (localStorage.getItem('page') === '2') {
   
 
-} else if (localStorage.getItem('page') === '3') {
-  launchpad.style.display = 'block';
-  keyboardDiv.style.display = 'none';
-}
+// } else if (localStorage.getItem('page') === '3') {
+//   launchpad.style.display = 'block';
+//   keyboardDiv.style.display = 'none';
+// }
 
 
 // KEYBOARD DATA----------------------------------
 //keyboard-data - run correct function based on data state
-var allKeys = document.getElementById('octave').children,
-    dataList = document.querySelector('#midi-data ul'),
+var allKeys = document.getElementsByClassName('octave')[0].children,
+    allKeysTwo = document.getElementsByClassName('octave')[1].children,
+    allLists = document.getElementsByTagName('ul'),
     audioTracks = document.getElementsByTagName('audio'),
     keyboardDiv = document.getElementById('keyboard-data');
 
-for (var i=0; i<allKeys.length; i++) {
-  allKeys[i].addEventListener('mousedown', function() {
-    this.style.backgroundColor = 'hsla(340,88%,60%,1)';
-    var newItem = document.createElement('li');
-newItem.appendChild(document.createTextNode('[144,'+this.dataset.note+',100]'));
-    dataList.appendChild(newItem);
+function showData(keys, listEl) {
+  for (var i=0; i<keys.length; i++) {
+    keys[i].addEventListener('mousedown', function() {
+      this.style.backgroundColor = 'hsla(340,88%,60%,1)';
+      var newItem = document.createElement('li');
+  newItem.appendChild(document.createTextNode('[144,'+this.dataset.note+',100]'));
+      listEl.appendChild(newItem);
 
-  });
-  allKeys[i].addEventListener('mouseup', function() {
-    if (this.nodeName === 'B') {
-      this.style.backgroundColor = 'black';
-    } else {
-      this.style.backgroundColor = 'white';
-    }
-    var newItem = document.createElement('li');
-newItem.appendChild(document.createTextNode('[128,'+this.dataset.note+',64]'));
-    dataList.appendChild(newItem);
-  });
+    });
+    keys[i].addEventListener('mouseup', function() {
+      if (this.nodeName === 'B') {
+        this.style.backgroundColor = 'black';
+      } else {
+        this.style.backgroundColor = 'white';
+      }
+      var newItem = document.createElement('li');
+  newItem.appendChild(document.createTextNode('[128,'+this.dataset.note+',64]'));
+      listEl.appendChild(newItem);
+    });
+  }  
 }
+
+showData(allKeys, allLists[0]);
+showData(allKeysTwo, allLists[1]);
+
 
 // sounds
 var context, bufferLoader;
@@ -171,21 +217,21 @@ function loadSounds() {
   bufferLoader = new BufferLoader(
     context,
     [
-      'public/octave/af3.mp3',
-      'public/octave/a3.mp3',
-      'public/octave/bf3.mp3',
-      'public/octave/b3.mp3',
-      'public/octave/c4.mp3',
-      'public/octave/cs4.mp3',
-      'public/octave/d4.mp3',
-      'public/octave/ef4.mp3',
-      'public/octave/e4.mp3',
-      'public/octave/f4.mp3',
-      'public/octave/fs4.mp3',
-      'public/octave/g4.mp3',
-      'public/octave/af4.mp3',
-      'public/octave/a4.mp3',
-      'public/octave/bf4.mp3'
+      '/public/octave/af3.mp3',
+      '/public/octave/a3.mp3',
+      '/public/octave/bf3.mp3',
+      '/public/octave/b3.mp3',
+      '/public/octave/c4.mp3',
+      '/public/octave/cs4.mp3',
+      '/public/octave/d4.mp3',
+      '/public/octave/ef4.mp3',
+      '/public/octave/e4.mp3',
+      '/public/octave/f4.mp3',
+      '/public/octave/fs4.mp3',
+      '/public/octave/g4.mp3',
+      '/public/octave/af4.mp3',
+      '/public/octave/a4.mp3',
+      '/public/octave/bf4.mp3'
     ],
     finishedLoading
     );
@@ -197,7 +243,7 @@ var playSounds = [];
 
 function finishedLoading(bufferList) {
 
-  var arr = Array.prototype.slice.call( allKeys );
+  var arr = Array.prototype.slice.call( allKeysTwo );
 
   arr.map(function(key, j) {
     key.addEventListener('mousedown', function() {
@@ -210,10 +256,11 @@ function finishedLoading(bufferList) {
   })
 
 }
+loadSounds();
 // make keyboard active
-channel.bind('client-play_keyboard', function() {
-  loadSounds();
-})
+// channel.bind('client-play_keyboard', function() {
+//   loadSounds();
+// })
 
 // receive play event
 channel.bind('client-play_ringtone', function() {
@@ -264,6 +311,9 @@ function sendSquare(userId, squareNo, onOff) {
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
+
+
 </script>
 
 </body>
