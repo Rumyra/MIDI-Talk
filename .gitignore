@@ -24,8 +24,7 @@ coverage
 build/Release
 
 # Dependency directory
-!node_modules/reveal.js/css/theme/rumyra.css
-node_modules/*
+node_modules
 
 # Optional npm cache directory
 .npm
