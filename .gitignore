@@ -34,3 +34,4 @@ node_modules
 
 # app specific
 envVars.txt
+!node_modules/reveal.js/css/theme/rumyra.css
