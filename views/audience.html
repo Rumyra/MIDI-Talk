@@ -99,6 +99,16 @@
     </div>
 
   </div>
+
+  <div class="page" id="link">
+    <header>
+      <h2>4: timeForDemos</h2>
+    </header>
+
+    <p><a href="http://mididemos.herokuapp.com/minim">mididemos.herokuapp.com/minim</a></p>
+
+  </div>
+
 <div id="pusher" data-key="{{PUSH_KEY}}"></div>
 <script src="/public/buffer-loader.js"></script>
 <script type="text/javascript">
@@ -129,7 +139,7 @@ HTMLAudioElement.prototype.stop = function()
 if (localStorage.getItem('username')) {
   var username = localStorage.getItem('username');
 } else {
-  var username = getRandomInt(0, 9999);
+  var username = Date.now()+''+getRandomInt(0, 9999);
 }
 if (localStorage.getItem('colour')) {
   var bkgrndColour = localStorage.getItem('colour');

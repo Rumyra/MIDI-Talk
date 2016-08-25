@@ -24,11 +24,11 @@ $backgroundColor: $darkGrey;
 
 body {
   background: $backgroundColor;
-  background-image: -o-linear-gradient(top, $darkGrey 33%, lighten($darkGrey, 20%) 33%, lighten($darkGrey, 20%) 66%, $darkGrey 66%);
-  background-image: -moz-linear-gradient(top, $darkGrey 33%, lighten($darkGrey, 20%) 33%, lighten($darkGrey, 20%) 66%, $darkGrey 66%);
-  background-image: -ms-linear-gradient(top, $darkGrey 33%, lighten($darkGrey, 20%) 33%, lighten($darkGrey, 20%) 66%, $darkGrey 66%);
-  background-image: -webkit-linear-gradient(top, $darkGrey 33%, lighten($darkGrey, 20%) 33%, lighten($darkGrey, 20%) 66%, $darkGrey 66%);
-  background-image: linear-gradient(top, $darkGrey 33%, lighten($darkGrey, 20%) 33%, lighten($darkGrey, 20%) 66%, $darkGrey 66%);
+  background-image: -o-linear-gradient(top, $darkGrey 25%, lighten($darkGrey, 20%) 25%, lighten($darkGrey, 20%) 50%, $darkGrey 50%, $darkGrey 75%, lighten($darkGrey, 20%) 75%);
+  background-image: -moz-linear-gradient(top, $darkGrey 25%, lighten($darkGrey, 20%) 25%, lighten($darkGrey, 20%) 50%, $darkGrey 50%, $darkGrey 75%, lighten($darkGrey, 20%) 75%);
+  background-image: -ms-linear-gradient(top, $darkGrey 25%, lighten($darkGrey, 20%) 25%, lighten($darkGrey, 20%) 50%, $darkGrey 50%, $darkGrey 75%, lighten($darkGrey, 20%) 75%);
+  background-image: -webkit-linear-gradient(top, $darkGrey 25%, lighten($darkGrey, 20%) 25%, lighten($darkGrey, 20%) 50%, $darkGrey 50%, $darkGrey 75%, lighten($darkGrey, 20%) 75%);
+  background-image: linear-gradient(top, $darkGrey 25%, lighten($darkGrey, 20%) 25%, lighten($darkGrey, 20%) 50%, $darkGrey 50%, $darkGrey 75%, lighten($darkGrey, 20%) 75%);
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -113,6 +113,12 @@ body {
   }
 }
 
+#link {
+  p {
+    padding: 30px 0px;
+    a {color:white;}
+  }
+}
 
 
 

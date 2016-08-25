@@ -121,7 +121,8 @@
 
         <section>
           <h2>Let me show you</h2>
-          <p><a href="/audience">/audience</a></p>
+          <p><a href="http://goo.gl/3pevKi">http://goo.gl/3pevKi</a></p>
+          <p>Green</p>
           <aside class="notes">
             <p>The easiest way for me to explain this to you is for me to illustrate this to you. Let’s take probably one of the most common MIDI enabled instruments - a keyboard.</p>
           </aside>
@@ -129,7 +130,7 @@
 
         <section data-state="get-user">
           <h2>Demo</h2>
-          <p><a href="/audience">/audience</a></p>
+          <p><a href="http://goo.gl/3pevKi">http://goo.gl/3pevKi</a></p>
           <p data-height="524" data-theme-id="1345" data-slug-hash="jWdWdp" data-default-tab="result" data-user="Rumyra" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/Rumyra/pen/jWdWdp/">Music keyboard</a> by Rumyra (<a href="http://codepen.io/Rumyra">@Rumyra</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
           <aside class="notes">
@@ -184,6 +185,23 @@ function onMIDISuccess(midiControl) {
           </aside>
         </section>
 
+        <section>
+          <h2>[144, 60, 100]</h2>
+          <h2>💩</h2>
+          <aside class="notes">
+            <p>the first byte 144 is the message type and channel, 144 is 90 in hex and the 9 says it's a 'Note on' message and the 0 is the channel number. A 'Note on' message has two data bytes, the first is the 'key number' which I'm guessing is the note number, so 60 would be C the second is 'note on velocity' and this has a value of 100, - 0-127 (I'm guessing this means the rate at which the note is turned on)</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Let me show you</h2>
+          <p><a href="http://goo.gl/3pevKi">http://goo.gl/3pevKi</a></p>
+          <p>Yellow</p>
+          <aside class="notes">
+            <p>The easiest way for me to explain this to you is for me to illustrate this to you. Let’s take probably one of the most common MIDI enabled instruments - a keyboard.</p>
+          </aside>
+        </section>
+
         <section class="alternate">
           <h2>What about sound?</h2>
           <!-- <p class="fragment fade-in">Mode messages: modulation, volume, panning, sustain, all sounds off, all notes, off, reset controllers.</p>
@@ -225,15 +243,6 @@ var request = new XMLHttpRequest();
           </aside>
         </section>
 
-        <section data-state="play-keyboard">
-          <h2>Demo</h2>
-          <aside class="notes">
-            <p>Here I'm pre loading all the piano samples and holding them in the buffer array, ready to be played when I receive the matched MIDI data</p>
-            <p>We could of course generate sounds with the ocillator node, we could add filters when dials are turned on MIDI controllers.</p>
-            <p>There's a whole range of audio/MIDI stuff - the best examples are 
-          </aside>
-        </section>
-
         <section data-state="playVid">
           <video src="public/media/akai.mp4" controls id="akai"></video>
           <h3>Oscillated MIDI sounds</h3>
@@ -245,45 +254,7 @@ var request = new XMLHttpRequest();
             <p>The other thing I was considering was does MIDI have to be hardware, considering it's just a data protocol, can we emulate that with software.</p>
           </aside>
         </section>
-
-        <section class="alternate">
-          <h2>MIDI Clock</h2>
-          <aside class="notes">
-            <p>Timing is important right - I mean this is music...</p>
-            <p>System Common Messages and System Real-time Messages deal with song selection, song position, the MIDI clock, start, stop, continue messages.</p>
-            <p>And what about starting, stopping, continuing - this timing - this is important in MIDI. MIDI has it's own Time Code as part of the spec. The recording and playback equipment - we’ve only really delay with sound and instrument messages - this is all really still important.</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Keyboards!</h2>
-          <p><a href="/audience">/audience</a></p>
-          <aside class="notes">
-            <p>Let me illustrate something to you. We’ve seen data as collected when we use MIDI, but we can also send data - so I can send data to all your MIDI devices.</p>
-            <p>Remember our voice bank - number 391 telephone.</p>
-            <p>Now you noticed that - that latency - that’s the web right. I could have thought about setting them all off at a global time - but that depends on your devices all being set to the same global time.</p>
-          </aside>
-        </section>
-
-        <section data-state="play-ringtone"><h2>Ring!</h2></section>
-
-        <section data-background="public/media/timing.png">
-          <aside class="notes">
-            <p>So I read something a draft spec from W3C the other day. The Timing Model Object API.</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Timing Model Object API</h2>
-          <blockquote>provide a unifying API for timed operation and temporal control</blockquote>
-          <blockquote>encapsulate complexity of distributed time synchronization</blockquote>
-          <p><a href="http://webtiming.github.io/timingobject/">webtiming.github.io/timingobject/</a></p>
-          <aside class="notes">
-            <p>‘QUOTE’</p>
-            <p>This doesn’t just cover timing in MIDI, this covers timing within the browser ecosystem. Audio, video, animation, real time stuff with web sockets we’re doing now.</p>
-          </aside>
-        </section>
-
+        
         <section class="alternate">
           <h2>Recording</h2>
           <aside class="notes">
@@ -343,13 +314,39 @@ var request = new XMLHttpRequest();
 
         <section data-background="public/media/keyboard.jpg">
           <aside class="notes">
-            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+            <p>Keyboard</p>
           </aside>
         </section>
 
         <section data-background="public/media/digitalDrum.jpg">
           <aside class="notes">
-            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+            <p>Drum Machine</p>
+          </aside>
+        </section>
+
+        <section data-background="public/media/launchpad.jpg">
+          <aside class="notes">
+            <p>launchpad</p>
+          </aside>
+        </section>
+
+        <section data-background="public/media/akainano.jpg">
+          <aside class="notes">
+            <p>akai & nano</p>
+          </aside>
+        </section>
+
+        <section data-background="public/media/icon.jpg">
+          <aside class="notes">
+            <p>icon idj</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Affordable Hardware</h2>
+          <aside class="notes">
+            <p>So it's these controllers that have really got attention. We're talking affordable hardware, accessible easily from the browser with a really nice data protocol - which we've already seen</p>
+            <p>So what else can we do?</p>
           </aside>
         </section>
 
@@ -359,29 +356,39 @@ var request = new XMLHttpRequest();
           </aside>
         </section>
 
-        <section data-background="public/media/launchpad.jpg">
+        <section>
+          <h2>Let me show you</h2>
+          <p><a href="http://goo.gl/3pevKi">http://goo.gl/3pevKi</a></p>
+          <p>Blue</p>
           <aside class="notes">
-            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+            <p>The easiest way for me to explain this to you is for me to illustrate this to you. Let’s take probably one of the most common MIDI enabled instruments - a keyboard.</p>
           </aside>
         </section>
 
-        <section data-background="public/media/akainano.jpg">
+
+        <section class="alternate">
+          <h2>MIDI Clock</h2>
           <aside class="notes">
-            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+            <p>Timing is important right - I mean this is music...</p>
+            <p>System Common Messages and System Real-time Messages deal with song selection, song position, the MIDI clock, start, stop, continue messages.</p>
+            <p>And what about starting, stopping, continuing - this timing - this is important in MIDI. MIDI has it's own Time Code as part of the spec. The recording and playback equipment - we’ve only really delay with sound and instrument messages - this is all really still important.</p>
           </aside>
         </section>
 
-        <section data-background="public/media/icon.jpg">
+        <section data-background="public/media/timing.png">
           <aside class="notes">
-            <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
+            <p>So I read something a draft spec from W3C the other day. The Timing Model Object API.</p>
           </aside>
         </section>
 
         <section>
-          <h2>Affordable Hardware</h2>
+          <h2>Timing Model Object API</h2>
+          <blockquote>provide a unifying API for timed operation and temporal control</blockquote>
+          <blockquote>encapsulate complexity of distributed time synchronization</blockquote>
+          <p><a href="http://webtiming.github.io/timingobject/">webtiming.github.io/timingobject/</a></p>
           <aside class="notes">
-            <p>So it's these controllers that have really got attention. We're talking affordable hardware, accessible easily from the browser with a really nice data protocol - which we've already seen</p>
-            <p>So what else can we do?</p>
+            <p>‘QUOTE’</p>
+            <p>This doesn’t just cover timing in MIDI, this covers timing within the browser ecosystem. Audio, video, animation, real time stuff with web sockets we’re doing now.</p>
           </aside>
         </section>
 
@@ -448,19 +455,15 @@ var request = new XMLHttpRequest();
           </aside>
         </section>
 
-        <section data-state="build-wall">
-          <h2>So let's do that!</h2>
-          <h3>Keyboards at the ready!</h3>
-          <p><a href="/audience">/audience</a></p>
+        
+        <section>
+          <h2>Let me show you</h2>
+          <p><a href="http://goo.gl/3pevKi">http://goo.gl/3pevKi</a></p>
+          <p>White</p>
           <aside class="notes">
-            <p>So I'm going to change your MIDI device</p>
-            <p>Keyboards are great but I really love the idea of crowdsourcing a realy big MIDI controller, by everyone having a small part of it.</p>
-            <p>Let's go with a mini launchpad.</p>
-            <p>But before I do I had this idea about playing with the raw data</p>
+            <p>The easiest way for me to explain this to you is for me to illustrate this to you. Let’s take probably one of the most common MIDI enabled instruments - a keyboard.</p>
           </aside>
         </section>
-
-        <section data-state="visual-demo"></section>
 
 <!--        <section data-state="build-wall">
           <h2>Mini Launchpad</h2>
@@ -719,6 +722,7 @@ channel.bind('client-send_square', function(data) {
 
 function buildLaunchpadWall() {
   var allPads = '';
+  console.log(allUsers);
   for (i=0; i<allUsers.length; i++) {
     allPads += '<div id="'+allUsers[i].userid+'" class="visual"><em></em><em></em><em></em><em></em></div>';
   }
