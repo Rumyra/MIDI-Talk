@@ -116,7 +116,7 @@
         </section>
 
         
-        <section class="alternate">
+        <section>
           <h2>Messages</h2>
           <h3 class="fragment fade-in">General MIDI:<br />Channel Messages<br />& System Messages</h3>
           <aside class="notes">
@@ -128,20 +128,10 @@
 
         <section>
           <h2>Let me show you</h2>
-          <p><a href="http://goo.gl/9y7Kdb">http://goo.gl/9y7Kdb</a></p>
+          <p><a href="https://goo.gl/Hhv8up">https://goo.gl/Hhv8up</a></p>
           <p>Pink</p>
           <aside class="notes">
             <p>The easiest way for me to explain this to you is for me to illustrate this to you. Let’s take probably one of the most common MIDI enabled instruments - a keyboard.</p>
-          </aside>
-        </section>
-
-        <section data-state="get-user">
-          <h2>Demo</h2>
-          <p><a href="http://goo.gl/9y7Kdb">http://goo.gl/9y7Kdb</a></p>
-          <p data-height="524" data-theme-id="1345" data-slug-hash="jWdWdp" data-default-tab="result" data-user="Rumyra" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/Rumyra/pen/jWdWdp/">Music keyboard</a> by Rumyra (<a href="http://codepen.io/Rumyra">@Rumyra</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-          <aside class="notes">
-            <p>You should all see a keyboard - one of the most common MIDI enabled instruments. Now this is the data that the web MIDI api passes back to us when a MIDI device is plugged in. So let's take a look at the code.</p>
           </aside>
         </section>
 
@@ -176,6 +166,23 @@ function onMIDISuccess(midiControl) {
           </aside>
         </section>
 
+        <section class="alternate">
+          <h2>Data</h2>
+          <aside class="notes">
+            <p>MIDI is about DATA</p>
+            <p>I cant not stress this enough. Yes it's data that relates to sound, but it is still just at it's core data.</p>
+          </aside>
+        </section>
+
+        <section data-state="get-user">
+          <h2>Demo</h2>
+          <p data-height="697" data-theme-id="1345" data-slug-hash="NxdbzL" data-default-tab="result" data-user="Rumyra" data-embed-version="2" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/Rumyra/pen/NxdbzL/">Web MIDI API Example</a> by Rumyra (<a href="http://codepen.io/Rumyra">@Rumyra</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+          <aside class="notes">
+            <p>You should all see a keyboard - one of the most common MIDI enabled instruments. Now this is the data that the web MIDI api passes back to us when a MIDI device is plugged in. So let's take a look at the code.</p>
+          </aside>
+        </section>
+
         <section>
           <h2>Support</h2>
           <table>
@@ -192,6 +199,15 @@ function onMIDISuccess(midiControl) {
           </aside>
         </section>
 
+        <section>
+          <h2>Resources</h2>
+          <h3>Chris Wilson's (@cwilso) Shim: <a href="https://github.com/cwilso/WebMIDIAPIShim">github.com/cwilso/WebMIDIAPIShim</a></h3>
+          <h3>Jean-Philippe Côté (@jpcote) MIDI library: <a href="https://github.com/cotejp/webmidi">github.com/cotejp/webmidi</a></h3>
+          <aside class="notes">
+            <p>Support isn't great only chromum and thus therefore opera atm. However you can turn your android device into a MIDI controller - be interesting to see how that turns out.</p>
+          </aside>
+        </section>
+
         <!-- <section>
           <h2>[144, 60, 100]</h2>
           <h2>💩</h2>
@@ -202,7 +218,7 @@ function onMIDISuccess(midiControl) {
 
         <section>
           <h2>Let me show you</h2>
-          <p><a href="http://goo.gl/9y7Kdb">http://goo.gl/9y7Kdb</a></p>
+          <p><a href="https://goo.gl/Hhv8up">https://goo.gl/Hhv8up</a></p>
           <p>Yellow</p>
           <aside class="notes">
             <p>The easiest way for me to explain this to you is for me to illustrate this to you. Let’s take probably one of the most common MIDI enabled instruments - a keyboard.</p>
@@ -221,8 +237,8 @@ function onMIDISuccess(midiControl) {
 
         <section>
           <h2>Web Audio API</h2>
-          <p class="fragment fade-in">MIDI data</p>
-          <p class="fragment fade-in">Play sounds OR Alter sounds</p>
+          <h3 class="fragment fade-in">MIDI data</h3>
+          <h3 class="fragment fade-in">Play sounds OR Alter sounds</h3>
           <aside class="notes">
             <p>So the web audio API - the classic companion to the Web MIDI API. You have an instrument or controller and you set up the Web Audio API to play sounds when certain data is received.</p>
             <p>I'm sure we've all seen the web audio API - here I'm using a sample</p>
@@ -257,6 +273,15 @@ var request = new XMLHttpRequest();
 </code></pre>
           <aside class="notes">
             <p>Take note value and turn it inot a frequency</p>
+          </aside>
+        </section>
+
+        <section data-state="get-user">
+          <h2>Demo</h2>
+          <p data-height="455" data-theme-id="1345" data-slug-hash="XmrqLV" data-default-tab="result" data-user="davemackintosh" data-embed-version="2" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/davemackintosh/pen/XmrqLV/">Web Midi with a Korg nanoPAD2</a> by Dave Mackintosh (<a href="http://codepen.io/davemackintosh">@davemackintosh</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+          <aside class="notes">
+            <p>You should all see a keyboard - one of the most common MIDI enabled instruments. Now this is the data that the web MIDI api passes back to us when a MIDI device is plugged in. So let's take a look at the code.</p>
           </aside>
         </section>
 
@@ -297,6 +322,14 @@ var request = new XMLHttpRequest();
         </section>
 
         <section>
+          <h2>Resources</h2>
+          <h3>Soledad Penadés' (@supersole) Article: <a href="https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/">hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/</a></h3>
+          <aside class="notes">
+            <p>Support isn't great only chromum and thus therefore opera atm. However you can turn your android device into a MIDI controller - be interesting to see how that turns out.</p>
+          </aside>
+        </section>
+
+        <section>
           <h2>Support</h2>
           <table>
             <tr>
@@ -304,7 +337,7 @@ var request = new XMLHttpRequest();
               <td><img src="public/media/ponies/chrome.png" class="plain" /></td>
               <td><img src="public/media/ponies/firefox.png" class="plain" /></td>
               <td class="faded"><img src="public/media/ponies/edge.png" class="plain" /></td>
-              <td class="faded"><img src="public/media/ponies/opera.png" class="plain" /></td>
+              <td><img src="public/media/ponies/opera.png" class="plain" /></td>
             </tr>
           </table>
           <aside class="notes">
@@ -367,15 +400,21 @@ var request = new XMLHttpRequest();
           </aside>
         </section>
 
-        <section data-background="public/media/synth.png">
+        <section data-background="public/media/synths.jpg">
           <aside class="notes">
             <p>A MIDI file format, now it’s usually part of another file format and there are loads.</p>
           </aside>
         </section>
 
+        <section data-background="public/media/launchpad.jpg">
+          <aside class="notes">
+            <p>launchpad</p>
+          </aside>
+        </section>
+
         <section>
           <h2>Let me show you</h2>
-          <p><a href="http://goo.gl/9y7Kdb">http://goo.gl/9y7Kdb</a></p>
+          <p><a href="https://goo.gl/Hhv8up">https://goo.gl/Hhv8up</a></p>
           <p>Blue</p>
           <aside class="notes">
             <p>The easiest way for me to explain this to you is for me to illustrate this to you. Let’s take probably one of the most common MIDI enabled instruments - a keyboard.</p>
@@ -418,8 +457,8 @@ var request = new XMLHttpRequest();
 
         <section>
           <h2>MIDI Transport Specifications</h2>
-          <p class="fragment fade-in">Orig: 5-pin din cable</p>
-          <p class="fragment fade-in">Today: USB & Bluetooth (BLE)</p>
+          <h3 class="fragment fade-in">Orig: 5-pin din cable</h3>
+          <h3 class="fragment fade-in">Today: USB & Bluetooth (BLE)</h3>
           <aside class="notes">
             <p>Which brings us back to connector spec which I mention right at the top of the talk</p>
             <p>This is something the web uniquely gives us - the MIDI transport spec was DIN cables originially. It has been expended to cover other transport mechanisms - USB being the most common.</p>
@@ -461,6 +500,12 @@ var request = new XMLHttpRequest();
           </aside>
         </section>
 
+        <section data-background="public/media/fountain.gif">
+          <aside class="notes">
+            <p>fountain</p>
+          </aside>
+        </section>
+
         <section data-state="back-to-talk">
           <h2>MIDI Visual Control Spec</h2>
           <blockquote>specification defines a way for MIDI to be used for control of visual presentation devices or systems</blockquote>
@@ -476,7 +521,7 @@ var request = new XMLHttpRequest();
         
         <section>
           <h2>Shall we do that?</h2>
-          <p><a href="http://goo.gl/9y7Kdb">http://goo.gl/9y7Kdb</a></p>
+          <p><a href="https://goo.gl/Hhv8up">https://goo.gl/Hhv8up</a></p>
           <p>White</p>
           <aside class="notes">
             <p>The easiest way for me to explain this to you is for me to illustrate this to you. Let’s take probably one of the most common MIDI enabled instruments - a keyboard.</p>
@@ -584,6 +629,17 @@ var request = new XMLHttpRequest();
         </section>
 
         <section>
+          <h2>Web Payment API</h2>
+          <h2 class="fragment fade-in">Web NFC</h2>
+          <h2 class="fragment fade-in">Web Sensor</h2>
+          <aside class="notes">
+            <p>Keep your eye out for the Web payment API</p>
+            <p>Web NFC</p>
+            <p>Web Sensor</p>
+          </aside>
+        </section>
+
+        <section>
           <h2>MIDI?</h2>
           <aside class="notes">
             <p>I was talking about MIDI and I hope I taught you something about MIDI - but secretly I was talking to you about specifications. How they’re important - how a something that’s been around for 30 years is still going strong and is still relevant - much like what we do with our web work. Just get a bunch of enthusiastic, clever, people together and you *will* create something that evolves to start including things you would never think of. Maing it all the more substantial and long lasting.</p>
@@ -591,11 +647,20 @@ var request = new XMLHttpRequest();
         </section>
 
         <section class="alternate">
+          <h2>Specifications</h2>
+          <aside class="notes">
+            <p>Industries that stick around are those that keep things moving, think about how what's happening now and move with the times.</p>
+            <p>Yeh I spoke about MIDI, but I introduced the Web MIDI API, The Media Recorder API, the Bluetooth API. We've already got a wealth of Web APIs - geolocation, device orientation. And yet we are still talking through and discussing new ones...</p>
+          </aside>
+        </section>
+
+        
+
+        <section class="alternate">
           <h2>@Rumyra</h2>
           <h3>Thanks 🎶✨🎹🎉</h3>
           <aside class="notes">
-            <p>We're so comfortable now with our whole dev stack being JS - but it's not just a software environment anymore.</p>
-            <p>Tim and I will be around for the next two days with all of our equipment VJing so come and say hello, come and play with our MIDI hardware - can I say that. It’s been an absolute pleasure I really hope I have inspired you today. Thank you.</p>
+            
           </aside>
         </section>
 
